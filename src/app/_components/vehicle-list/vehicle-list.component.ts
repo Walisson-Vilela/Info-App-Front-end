@@ -9,6 +9,7 @@ interface Vehicle {
   renavam?: string;
   year?: number;
   isEditing?: boolean;
+  originalData?: Vehicle; // Para armazenar os dados originais antes da edição
 }
 
 @Component({
@@ -74,12 +75,23 @@ export class VehicleListComponent {
   editVehicle(index: number) {
     const vehicle = this.vehicles[index];
     vehicle.isEditing = true; // Marca o veículo como sendo editado
+    vehicle.originalData = { ...vehicle }; // Salva os dados originais do veículo
   }
 
   saveVehicle(index: number) {
     const vehicle = this.vehicles[index];
     if (vehicle.brand && vehicle.model && vehicle.plate) {
       // Salva as alterações e desmarca o veículo como "em edição"
+      vehicle.isEditing = false;
+    }
+  }
+
+  cancelEdit(vehicle: Vehicle) {
+    // Restaura os dados originais e desmarca o veículo como "em edição"
+    if (vehicle.originalData) {
+      vehicle.brand = vehicle.originalData.brand;
+      vehicle.model = vehicle.originalData.model;
+      vehicle.plate = vehicle.originalData.plate;
       vehicle.isEditing = false;
     }
   }

@@ -27,7 +27,10 @@
         <td>
           <button *ngIf="!vehicle.isEditing" (click)="editVehicle(i)" class="btn btn-warning">Editar</button>
           <button *ngIf="vehicle.isEditing" (click)="saveVehicle(i)" class="btn btn-success">Salvar</button>
-          <button (click)="delete(vehicle)" class="btn btn-danger">Deletar</button>
+          <!-- Botão "Cancelar" durante a edição -->
+          <button *ngIf="vehicle.isEditing" (click)="cancelEdit(vehicle)" class="btn btn-secondary">Cancelar</button>
+          <!-- Botão "Deletar" somente se não estiver em edição -->
+          <button *ngIf="!vehicle.isEditing" (click)="delete(vehicle)" class="btn btn-danger">Deletar</button>
         </td>
       </tr>
 
