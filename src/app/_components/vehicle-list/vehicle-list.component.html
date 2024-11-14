@@ -6,7 +6,10 @@
       <tr>
         <th>Marca</th>
         <th>Modelo</th>
+        <th>Ano</th>
         <th>Placa</th>
+        <th>Chassi</th>
+        <th>Renavam</th>
         <th></th>
       </tr>
     </thead>
@@ -15,7 +18,10 @@
       <tr *ngIf="isAddingNew">
         <td><input [(ngModel)]="newVehicle.brand" class="form-control" placeholder="Marca"></td>
         <td><input [(ngModel)]="newVehicle.model" class="form-control" placeholder="Modelo"></td>
+        <td><input [(ngModel)]="newVehicle.year" class="form-control" placeholder="Ano"></td>
         <td><input [(ngModel)]="newVehicle.plate" class="form-control" placeholder="Placa"></td>
+        <td><input [(ngModel)]="newVehicle.chassi" class="form-control" placeholder="Chassi"></td>
+        <td><input [(ngModel)]="newVehicle.renavam" class="form-control" placeholder="Renavam"></td>
         <td>
           <button (click)="saveNewVehicle()" class="btn btn-success">Salvar</button>
           <button (click)="cancelNewVehicle()" class="btn btn-secondary">Cancelar</button>
@@ -32,16 +38,26 @@
         <td *ngIf="vehicle.isEditing">
           <input [(ngModel)]="vehicle.model" class="form-control" placeholder="Modelo">
         </td>
+        <td *ngIf="!vehicle.isEditing">{{ vehicle.year }}</td>
+        <td *ngIf="vehicle.isEditing">
+          <input [(ngModel)]="vehicle.year" class="form-control" placeholder="Ano">
+        </td>
         <td *ngIf="!vehicle.isEditing">{{ vehicle.plate }}</td>
         <td *ngIf="vehicle.isEditing">
           <input [(ngModel)]="vehicle.plate" class="form-control" placeholder="Placa">
         </td>
+        <td *ngIf="!vehicle.isEditing">{{ vehicle.chassi }}</td>
+        <td *ngIf="vehicle.isEditing">
+          <input [(ngModel)]="vehicle.chassi" class="form-control" placeholder="Chassi">
+        </td>
+        <td *ngIf="!vehicle.isEditing">{{ vehicle.renavam }}</td>
+        <td *ngIf="vehicle.isEditing">
+          <input [(ngModel)]="vehicle.renavam" class="form-control" placeholder="Renavam">
+        </td>
         <td>
           <button *ngIf="!vehicle.isEditing" (click)="editVehicle(i)" class="btn btn-warning">Editar</button>
           <button *ngIf="vehicle.isEditing" (click)="saveVehicle(i)" class="btn btn-success">Salvar</button>
-          <!-- Botão "Cancelar" durante a edição -->
           <button *ngIf="vehicle.isEditing" (click)="cancelEdit(vehicle)" class="btn btn-secondary">Cancelar</button>
-          <!-- Botão "Deletar" somente se não estiver em edição -->
           <button *ngIf="!vehicle.isEditing" (click)="delete(vehicle)" class="btn btn-danger">Deletar</button>
         </td>
       </tr>

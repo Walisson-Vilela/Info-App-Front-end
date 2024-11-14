@@ -48,7 +48,7 @@ export class VehicleListComponent {
     },
   ];
 
-  newVehicle: Vehicle = { id: 0, brand: '', model: '', plate: '' }; // Novo veículo a ser adicionado
+  newVehicle: Vehicle = { id: 0, brand: '', model: '', plate: '', chassi: '', renavam: '', year: 0 }; // Novo veículo a ser adicionado
   isAddingNew: boolean = false;
 
   selectedVehicle: Vehicle | null = null;
@@ -56,11 +56,11 @@ export class VehicleListComponent {
 
   addNewVehicle() {
     this.isAddingNew = true; // Habilita a linha de inserção
-    this.newVehicle = { id: 0, brand: '', model: '', plate: '' }; // Limpa os campos
+    this.newVehicle = { id: 0, brand: '', model: '', plate: '', chassi: '', renavam: '', year: 0 }; // Limpa os campos
   }
 
   saveNewVehicle() {
-    if (this.newVehicle.brand && this.newVehicle.model && this.newVehicle.plate) {
+    if (this.newVehicle.brand && this.newVehicle.model && this.newVehicle.plate && this.newVehicle.chassi && this.newVehicle.renavam && this.newVehicle.year) {
       // Atribui um ID único para o novo veículo (número de veículos + 1)
       this.newVehicle.id = this.vehicles.length + 1;
       // Adiciona o novo veículo no início da tabela (usando unshift())
@@ -81,7 +81,7 @@ export class VehicleListComponent {
 
   saveVehicle(index: number) {
     const vehicle = this.vehicles[index];
-    if (vehicle.brand && vehicle.model && vehicle.plate) {
+    if (vehicle.brand && vehicle.model && vehicle.plate && vehicle.chassi && vehicle.renavam && vehicle.year) {
       // Salva as alterações e desmarca o veículo como "em edição"
       vehicle.isEditing = false;
     }
@@ -93,6 +93,9 @@ export class VehicleListComponent {
       vehicle.brand = vehicle.originalData.brand;
       vehicle.model = vehicle.originalData.model;
       vehicle.plate = vehicle.originalData.plate;
+      vehicle.chassi = vehicle.originalData.chassi;
+      vehicle.renavam = vehicle.originalData.renavam;
+      vehicle.year = vehicle.originalData.year;
       vehicle.isEditing = false;
     }
   }
