@@ -2,7 +2,25 @@
 .primary-btn {
   padding: 0.3rem 1rem;
   border: none;
-  background-color: #b0e0e6;
+  background-color: #90EE90;
   border-radius: 5px;
-  font-weight:600;
+  font-weight: 600;
+
+  &:hover {
+    background-color: #79d379;
+  }
 }
+
+.secondary-btn {
+  padding: 0.3rem 1rem;
+  border: 2px  #90EE90 solid;
+  background-color: white;
+  border-radius: 5px;
+  font-weight: 600;
+
+  &:hover {
+    border: 2px #79d379 solid;
+    background-color: #90EE90;
+  }
+}
+
