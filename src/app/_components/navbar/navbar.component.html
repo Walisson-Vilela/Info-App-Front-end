@@ -1,37 +1,46 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
+  <div style="display: flex; justify-content: space-between; width: 100%">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div
+      class="collapse navbar-collapse"
+      id="navbarSupportedContent"
+      style="
+        width: 50%;
+        justify-content: flex-end;
+        padding: 0 1rem;
+        align-items: center;
+      "
     >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/users">Usuários</a>
-        </li>
-      </ul>
       <form class="d-flex">
-        <div class="input-container">
+        <div
+          class="input-container"
+          style="position: relative; margin-right: 2rem"
+        >
           <input
             class="input-search"
             type="search"
             placeholder="Buscar"
             aria-label="Search"
-          >
-          <img src="search.svg" alt="Ícone de busca" class="search-icon"/>
+          />
+          <img src="search.svg" alt="Ícone de busca" class="search-icon" />
         </div>
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <div style="display: flex; flex-flow: row nowrap; align-items: center;">
+          <span style="margin-right: 1rem;" >Bem vindo(a) Walisson</span>
+        <img style="width: 2.5rem" src="person.svg" />
+      </div>
       </form>
     </div>
   </div>
