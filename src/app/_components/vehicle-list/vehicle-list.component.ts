@@ -6,7 +6,7 @@ interface Vehicle {
   model: string;
   plate: string;
   chassi?: string;
-  renavam?: string;
+  reindeer?: string;  // Alterado de 'renavam' para 'reindeer'
   year?: number;
   isEditing?: boolean;
   originalData?: Vehicle; // Para armazenar os dados originais antes da edição
@@ -25,7 +25,7 @@ export class VehicleListComponent {
       model: 'Corolla',
       plate: 'ABC-1234',
       chassi: 'JTDBE32K123456789',
-      renavam: '123456789',
+      reindeer: '123456789', // Alterado de 'renavam' para 'reindeer'
       year: 2020,
     },
     {
@@ -34,7 +34,7 @@ export class VehicleListComponent {
       model: 'Civic',
       plate: 'XYZ-5678',
       chassi: '2HGES165X12345678',
-      renavam: '987654321',
+      reindeer: '987654321', // Alterado de 'renavam' para 'reindeer'
       year: 2021,
     },
     {
@@ -43,12 +43,12 @@ export class VehicleListComponent {
       model: 'Fiesta',
       plate: 'LMN-9101',
       chassi: '3FADP4BJ4EM123456',
-      renavam: '112233445',
+      reindeer: '112233445', // Alterado de 'renavam' para 'reindeer'
       year: 2019,
     },
   ];
 
-  newVehicle: Vehicle = { id: 0, brand: '', model: '', plate: '', chassi: '', renavam: '', year: 0 }; // Novo veículo a ser adicionado
+  newVehicle: Vehicle = { id: 0, brand: '', model: '', plate: '', chassi: '', reindeer: '', year: 0 }; // Alterado de 'renavam' para 'reindeer'
   isAddingNew: boolean = false;
 
   selectedVehicle: Vehicle | null = null;
@@ -56,16 +56,16 @@ export class VehicleListComponent {
 
   addNewVehicle() {
     this.isAddingNew = true; // Habilita a linha de inserção
-    this.newVehicle = { id: 0, brand: '', model: '', plate: '', chassi: '', renavam: '', year: 0 }; // Limpa os campos
+    this.newVehicle = { id: 0, brand: '', model: '', plate: '', chassi: '', reindeer: '', year: 0 }; // Limpa os campos
   }
 
   saveNewVehicle() {
-    if (this.newVehicle.brand && this.newVehicle.model && this.newVehicle.plate && this.newVehicle.chassi && this.newVehicle.renavam && this.newVehicle.year) {
+    if (this.newVehicle.brand && this.newVehicle.model && this.newVehicle.plate && this.newVehicle.chassi && this.newVehicle.reindeer && this.newVehicle.year) {
       // Atribui um ID único para o novo veículo (número de veículos + 1)
       this.newVehicle.id = this.vehicles.length + 1;
       // Adiciona o novo veículo no início da tabela (usando unshift())
       this.vehicles.unshift({ ...this.newVehicle });
-      this.cancelNewVehicle(); // Cancela o modo de adicionar após salvar
+      this.cancelNewVehicle(); // Cancela a inserção de novo veículo após salvar
     }
   }
 
@@ -81,7 +81,7 @@ export class VehicleListComponent {
 
   saveVehicle(index: number) {
     const vehicle = this.vehicles[index];
-    if (vehicle.brand && vehicle.model && vehicle.plate && vehicle.chassi && vehicle.renavam && vehicle.year) {
+    if (vehicle.brand && vehicle.model && vehicle.plate && vehicle.chassi && vehicle.reindeer && vehicle.year) {
       // Salva as alterações e desmarca o veículo como "em edição"
       vehicle.isEditing = false;
     }
@@ -94,7 +94,7 @@ export class VehicleListComponent {
       vehicle.model = vehicle.originalData.model;
       vehicle.plate = vehicle.originalData.plate;
       vehicle.chassi = vehicle.originalData.chassi;
-      vehicle.renavam = vehicle.originalData.renavam;
+      vehicle.reindeer = vehicle.originalData.reindeer; // Alterado de 'renavam' para 'reindeer'
       vehicle.year = vehicle.originalData.year;
       vehicle.isEditing = false;
     }

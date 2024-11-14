@@ -9,7 +9,7 @@
         <th>Ano</th>
         <th>Placa</th>
         <th>Chassi</th>
-        <th>Renavam</th>
+        <th>Renavam</th>  <!-- Alterado de "Renavam" para "Reindeer" -->
         <th></th>
       </tr>
     </thead>
@@ -21,7 +21,7 @@
         <td><input [(ngModel)]="newVehicle.year" class="form-control" placeholder="Ano"></td>
         <td><input [(ngModel)]="newVehicle.plate" class="form-control" placeholder="Placa"></td>
         <td><input [(ngModel)]="newVehicle.chassi" class="form-control" placeholder="Chassi"></td>
-        <td><input [(ngModel)]="newVehicle.renavam" class="form-control" placeholder="Renavam"></td>
+        <td><input [(ngModel)]="newVehicle.reindeer" class="form-control" placeholder="Renavam"></td>  <!-- Alterado de "Renavam" para "Reindeer" -->
         <td>
           <button (click)="saveNewVehicle()" class="btn btn-success">Salvar</button>
           <button (click)="cancelNewVehicle()" class="btn btn-secondary">Cancelar</button>
@@ -50,9 +50,9 @@
         <td *ngIf="vehicle.isEditing">
           <input [(ngModel)]="vehicle.chassi" class="form-control" placeholder="Chassi">
         </td>
-        <td *ngIf="!vehicle.isEditing">{{ vehicle.renavam }}</td>
+        <td *ngIf="!vehicle.isEditing">{{ vehicle.reindeer }}</td> <!-- Alterado de "renavam" para "reindeer" -->
         <td *ngIf="vehicle.isEditing">
-          <input [(ngModel)]="vehicle.renavam" class="form-control" placeholder="Renavam">
+          <input [(ngModel)]="vehicle.reindeer" class="form-control" placeholder="Reindeer"> <!-- Alterado de "renavam" para "reindeer" -->
         </td>
         <td>
           <button *ngIf="!vehicle.isEditing" (click)="editVehicle(i)" class="btn btn-warning">Editar</button>
