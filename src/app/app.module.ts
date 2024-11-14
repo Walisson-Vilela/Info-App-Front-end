@@ -7,7 +7,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { NavbarComponent } from './_components/navbar/navbar.component';
 import { FooterComponent } from './_components/footer/footer.component';
 import { VehicleListComponent } from './_components/vehicle-list/vehicle-list.component';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { NgOptimizedImage } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgOptimizedImage,
   ],
   providers: [],
   bootstrap: [AppComponent]
