@@ -1,5 +1,13 @@
+.main-content {
+  flex: 1;
+}
+
+/* O estilo para o footer permanece o mesmo */
 footer {
-  position: relative;
-  margin-top: auto;
-  bottom: 0 ;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  background-color: #f8f9fa;
+  text-align: center;
+  border: 1px red solid;
 }
