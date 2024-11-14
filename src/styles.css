@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 .primary-btn {
   padding: 0.3rem 1rem;
-  border: none;
+  border: 2px  transparent solid;
   background-color: #90EE90;
   border-radius: 5px;
   font-weight: 600;
@@ -23,4 +23,30 @@
     background-color: #90EE90;
   }
 }
+.input-container {
+  position: relative;
+  display: inline-block;
+}
 
+.search-icon {
+  position: absolute;
+  right: 0.75rem;  /* Ajuste a posição do ícone à direita */
+  top: 50%;         /* Alinha verticalmente no meio do input */
+  transform: translateY(-50%); /* Centraliza verticalmente */
+  pointer-events: none;  /* Impede interação com o ícone */
+  width: 20px;           /* Ajuste o tamanho do ícone */
+  height: 20px;          /* Ajuste o tamanho do ícone */
+
+}
+
+.input-search {
+  border: 1px #DCDCDC solid;
+  width: 100%;
+  border-radius: 50px;
+  height: 2.5rem;
+  padding: 0 3rem 0 2rem;
+
+  &:focus {
+    outline:1px solid #90EE90;
+  }
+}
