@@ -1,5 +1,5 @@
-.container {
-  padding: 1rem;
+.container-fluid {
+  padding:1rem 1rem;
 }
 
 /* Estilos para inputs desabilitados */
