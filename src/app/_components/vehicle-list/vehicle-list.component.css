@@ -1,7 +1,24 @@
-.table {
-  width: 100%;
-  margin-top: 20px;
+.container {
+  padding: 1rem;
 }
-.btn {
-  margin-right: 5px;
+
+/* Estilos para inputs desabilitados */
+input:disabled {
+  background-color: transparent; /* Fundo transparente */
+  border: none; /* Sem borda */
+  box-shadow: none; /* Remove qualquer sombra da borda */
 }
+
+/* Opcional: Adicionar uma borda simples quando o campo não estiver desabilitado */
+input {
+  border: 1px solid #ccc; /* Borda padrão */
+  padding: 0.5rem; /* Espaçamento interno */
+  border-radius: 4px; /* Borda arredondada */
+}
+
+/* Estilo opcional para quando o input estiver em foco */
+input:focus {
+  border: 1px solid #007bff; /* Cor da borda ao focar no input */
+  outline: none; /* Remove o contorno padrão do navegador */
+}
+
