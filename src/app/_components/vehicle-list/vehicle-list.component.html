@@ -74,36 +74,96 @@
       <!-- Exibe os veículos existentes -->
       <tr *ngFor="let vehicle of vehicles; let i = index">
         <td>
-          <input *ngIf="!vehicle.isEditing" [(ngModel)]="vehicle.brand" class="form-control" [disabled]="true">
-          <input *ngIf="vehicle.isEditing" [(ngModel)]="vehicle.brand" class="form-control" placeholder="Marca">
+          <input
+            *ngIf="!vehicle.isEditing"
+            [(ngModel)]="vehicle.brand"
+            class="form-control"
+            [disabled]="true"
+          />
+          <input
+            *ngIf="vehicle.isEditing"
+            [(ngModel)]="vehicle.brand"
+            class="form-control"
+            placeholder="Marca"
+          />
         </td>
 
         <td>
-          <input *ngIf="!vehicle.isEditing" [(ngModel)]="vehicle.model" class="form-control" [disabled]="true">
-          <input *ngIf="vehicle.isEditing" [(ngModel)]="vehicle.model" class="form-control" placeholder="Modelo">
+          <input
+            *ngIf="!vehicle.isEditing"
+            [(ngModel)]="vehicle.model"
+            class="form-control"
+            [disabled]="true"
+          />
+          <input
+            *ngIf="vehicle.isEditing"
+            [(ngModel)]="vehicle.model"
+            class="form-control"
+            placeholder="Modelo"
+          />
         </td>
 
         <td>
-          <input *ngIf="!vehicle.isEditing" [(ngModel)]="vehicle.year" class="form-control" [disabled]="true">
-          <input *ngIf="vehicle.isEditing" [(ngModel)]="vehicle.year" class="form-control" placeholder="Ano">
+          <input
+            *ngIf="!vehicle.isEditing"
+            [(ngModel)]="vehicle.year"
+            class="form-control"
+            [disabled]="true"
+          />
+          <input
+            *ngIf="vehicle.isEditing"
+            [(ngModel)]="vehicle.year"
+            class="form-control"
+            placeholder="Ano"
+          />
         </td>
 
         <td>
-          <input *ngIf="!vehicle.isEditing" [(ngModel)]="vehicle.plate" class="form-control" [disabled]="true">
-          <input *ngIf="vehicle.isEditing" [(ngModel)]="vehicle.plate" class="form-control" placeholder="Placa">
+          <input
+            *ngIf="!vehicle.isEditing"
+            [(ngModel)]="vehicle.plate"
+            class="form-control"
+            [disabled]="true"
+          />
+          <input
+            *ngIf="vehicle.isEditing"
+            [(ngModel)]="vehicle.plate"
+            class="form-control"
+            placeholder="Placa"
+          />
         </td>
 
         <td>
-          <input *ngIf="!vehicle.isEditing" [(ngModel)]="vehicle.chassi" class="form-control" [disabled]="true">
-          <input *ngIf="vehicle.isEditing" [(ngModel)]="vehicle.chassi" class="form-control" placeholder="Chassi">
+          <input
+            *ngIf="!vehicle.isEditing"
+            [(ngModel)]="vehicle.chassi"
+            class="form-control"
+            [disabled]="true"
+          />
+          <input
+            *ngIf="vehicle.isEditing"
+            [(ngModel)]="vehicle.chassi"
+            class="form-control"
+            placeholder="Chassi"
+          />
         </td>
 
         <td>
-          <input *ngIf="!vehicle.isEditing" [(ngModel)]="vehicle.reindeer" class="form-control" [disabled]="true">
-          <input *ngIf="vehicle.isEditing" [(ngModel)]="vehicle.reindeer" class="form-control" placeholder="Reindeer">
+          <input
+            *ngIf="!vehicle.isEditing"
+            [(ngModel)]="vehicle.reindeer"
+            class="form-control"
+            [disabled]="true"
+          />
+          <input
+            *ngIf="vehicle.isEditing"
+            [(ngModel)]="vehicle.reindeer"
+            class="form-control"
+            placeholder="Reindeer"
+          />
         </td>
 
-        <td>
+        <td style="align-items: ">
           <button
             *ngIf="!vehicle.isEditing"
             (click)="editVehicle(i)"
@@ -125,13 +185,7 @@
           >
             Cancelar
           </button>
-          <button
-            *ngIf="!vehicle.isEditing"
-            (click)="delete(vehicle)"
-            class="btn btn-danger"
-          >
-            Deletar
-          </button>
+          <img src="/src/assets/icon-delete.svg" alt="Deletar" />
         </td>
       </tr>
     </tbody>
