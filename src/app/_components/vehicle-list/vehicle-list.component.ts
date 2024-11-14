@@ -54,7 +54,7 @@ export class VehicleListComponent {
   selectedVehicle: Vehicle | null = null;
   isEditing: boolean = false;
 
-  sortOrder = true; // true for ascending, false for descending
+  sortOrder: { [key: string]: boolean } = {}; // Object to track sort order for each column
 
   addNewVehicle() {
     this.isAddingNew = true; // Habilita a linha de inserção
@@ -109,13 +109,13 @@ export class VehicleListComponent {
   }
 
   sortTable(property: keyof Vehicle) {
-    this.sortOrder = !this.sortOrder;
+    this.sortOrder[property] = !this.sortOrder[property];
     this.vehicles.sort((a, b) => {
       if (a[property] && b[property]) {
         if (a[property] < b[property]) {
-          return this.sortOrder ? -1 : 1;
+          return this.sortOrder[property] ? -1 : 1;
         } else if (a[property] > b[property]) {
-          return this.sortOrder ? 1 : -1;
+          return this.sortOrder[property] ? 1 : -1;
         }
       }
       return 0;
