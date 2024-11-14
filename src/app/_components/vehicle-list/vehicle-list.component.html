@@ -1,0 +1,21 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Placa</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let vehicle of vehicles">
+      <td>{{ vehicle.brand }}</td>
+      <td>{{ vehicle.model }}</td>
+      <td>{{ vehicle.plate }}</td>
+      <td>
+        <button  class="btn btn-warning">Edit</button>
+        <button (click)="delete(vehicle)" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
