@@ -12,9 +12,18 @@
     </thead>
     <tbody>
       <tr *ngFor="let vehicle of vehicles; let i = index">
-        <td>{{ vehicle.brand }}</td>
-        <td>{{ vehicle.model }}</td>
-        <td>{{ vehicle.plate }}</td>
+        <td *ngIf="!vehicle.isEditing">{{ vehicle.brand }}</td>
+        <td *ngIf="vehicle.isEditing">
+          <input [(ngModel)]="vehicle.brand" class="form-control" placeholder="Marca">
+        </td>
+        <td *ngIf="!vehicle.isEditing">{{ vehicle.model }}</td>
+        <td *ngIf="vehicle.isEditing">
+          <input [(ngModel)]="vehicle.model" class="form-control" placeholder="Modelo">
+        </td>
+        <td *ngIf="!vehicle.isEditing">{{ vehicle.plate }}</td>
+        <td *ngIf="vehicle.isEditing">
+          <input [(ngModel)]="vehicle.plate" class="form-control" placeholder="Placa">
+        </td>
         <td>
           <button *ngIf="!vehicle.isEditing" (click)="editVehicle(i)" class="btn btn-warning">Editar</button>
           <button *ngIf="vehicle.isEditing" (click)="saveVehicle(i)" class="btn btn-success">Salvar</button>

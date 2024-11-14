@@ -73,18 +73,14 @@ export class VehicleListComponent {
 
   editVehicle(index: number) {
     const vehicle = this.vehicles[index];
-    vehicle.isEditing = true;
-    this.selectedVehicle = { ...vehicle }; // Faz uma cópia do veículo para edição
+    vehicle.isEditing = true; // Marca o veículo como sendo editado
   }
 
   saveVehicle(index: number) {
     const vehicle = this.vehicles[index];
-    if (this.selectedVehicle) {
-      const updatedVehicle = this.selectedVehicle;
-      // Atualiza o veículo no array
-      this.vehicles[index] = updatedVehicle;
+    if (vehicle.brand && vehicle.model && vehicle.plate) {
+      // Salva as alterações e desmarca o veículo como "em edição"
       vehicle.isEditing = false;
-      this.selectedVehicle = null;
     }
   }
 
