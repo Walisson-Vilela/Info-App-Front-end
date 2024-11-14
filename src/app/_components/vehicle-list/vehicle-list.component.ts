@@ -5,9 +5,10 @@ interface Vehicle {
   brand: string;
   model: string;
   plate: string;
-  chassi: string;
-  renavam: string;
-  year: number;
+  chassi?: string;
+  renavam?: string;
+  year?: number;
+  isEditing?: boolean;
 }
 
 @Component({
@@ -46,17 +47,43 @@ export class VehicleListComponent {
     },
   ];
 
+  newVehicle: Vehicle = { id: 0, brand: '', model: '', plate: '' }; // Novo veículo a ser adicionado
+  isAddingNew: boolean = false;
+
   selectedVehicle: Vehicle | null = null;
   isEditing: boolean = false;
 
-  save() {
+  addNewVehicle() {
+    this.isAddingNew = true; // Habilita a linha de inserção
+    this.newVehicle = { id: 0, brand: '', model: '', plate: '' }; // Limpa os campos
+  }
+
+  saveNewVehicle() {
+    if (this.newVehicle.brand && this.newVehicle.model && this.newVehicle.plate) {
+      // Adiciona o novo veículo ao array
+      this.newVehicle.id = this.vehicles.length + 1; // Atribui um ID único
+      this.vehicles.push({ ...this.newVehicle });
+      this.cancelNewVehicle(); // Cancela o modo de adicionar após salvar
+    }
+  }
+
+  cancelNewVehicle() {
+    this.isAddingNew = false; // Cancela a inserção de novo veículo
+  }
+
+  editVehicle(index: number) {
+    const vehicle = this.vehicles[index];
+    vehicle.isEditing = true;
+    this.selectedVehicle = { ...vehicle }; // Faz uma cópia do veículo para edição
+  }
+
+  saveVehicle(index: number) {
+    const vehicle = this.vehicles[index];
     if (this.selectedVehicle) {
-      const index = this.vehicles.findIndex(
-        (v) => v.id === this.selectedVehicle!.id
-      );
-      if (index > -1) {
-        this.vehicles[index] = this.selectedVehicle;
-      }
+      const updatedVehicle = this.selectedVehicle;
+      // Atualiza o veículo no array
+      this.vehicles[index] = updatedVehicle;
+      vehicle.isEditing = false;
       this.selectedVehicle = null;
     }
   }

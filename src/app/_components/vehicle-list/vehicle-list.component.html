@@ -1,21 +1,37 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th>Marca</th>
-      <th>Modelo</th>
-      <th>Placa</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let vehicle of vehicles">
-      <td>{{ vehicle.brand }}</td>
-      <td>{{ vehicle.model }}</td>
-      <td>{{ vehicle.plate }}</td>
-      <td>
-        <button  class="btn btn-warning">Edit</button>
-        <button (click)="delete(vehicle)" class="btn btn-danger">Delete</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  <button (click)="addNewVehicle()" class="btn btn-primary mb-3">Novo Veículo</button>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Placa</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vehicle of vehicles; let i = index">
+        <td>{{ vehicle.brand }}</td>
+        <td>{{ vehicle.model }}</td>
+        <td>{{ vehicle.plate }}</td>
+        <td>
+          <button *ngIf="!vehicle.isEditing" (click)="editVehicle(i)" class="btn btn-warning">Editar</button>
+          <button *ngIf="vehicle.isEditing" (click)="saveVehicle(i)" class="btn btn-success">Salvar</button>
+          <button (click)="delete(vehicle)" class="btn btn-danger">Deletar</button>
+        </td>
+      </tr>
+
+      <!-- Linha de novo veículo para edição -->
+      <tr *ngIf="isAddingNew">
+        <td><input [(ngModel)]="newVehicle.brand" class="form-control" placeholder="Marca"></td>
+        <td><input [(ngModel)]="newVehicle.model" class="form-control" placeholder="Modelo"></td>
+        <td><input [(ngModel)]="newVehicle.plate" class="form-control" placeholder="Placa"></td>
+        <td>
+          <button (click)="saveNewVehicle()" class="btn btn-success">Salvar</button>
+          <button (click)="cancelNewVehicle()" class="btn btn-secondary">Cancelar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
