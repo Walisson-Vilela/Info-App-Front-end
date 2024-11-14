@@ -54,6 +54,8 @@ export class VehicleListComponent {
   selectedVehicle: Vehicle | null = null;
   isEditing: boolean = false;
 
+  sortOrder = true; // true for ascending, false for descending
+
   addNewVehicle() {
     this.isAddingNew = true; // Habilita a linha de inserção
     this.newVehicle = { id: 0, brand: '', model: '', plate: '', chassi: '', reindeer: '', year: 0 }; // Limpa os campos
@@ -75,13 +77,15 @@ export class VehicleListComponent {
 
   editVehicle(index: number) {
     const vehicle = this.vehicles[index];
-    vehicle.isEditing = true; // Marca o veículo como sendo editado
-    vehicle.originalData = { ...vehicle }; // Salva os dados originais do veículo
+    if (vehicle) {
+      vehicle.isEditing = true; // Marca o veículo como sendo editado
+      vehicle.originalData = { ...vehicle }; // Salva os dados originais do veículo
+    }
   }
 
   saveVehicle(index: number) {
     const vehicle = this.vehicles[index];
-    if (vehicle.brand && vehicle.model && vehicle.plate && vehicle.chassi && vehicle.reindeer && vehicle.year) {
+    if (vehicle && vehicle.brand && vehicle.model && vehicle.plate && vehicle.chassi && vehicle.reindeer && vehicle.year) {
       // Salva as alterações e desmarca o veículo como "em edição"
       vehicle.isEditing = false;
     }
@@ -90,17 +94,31 @@ export class VehicleListComponent {
   cancelEdit(vehicle: Vehicle) {
     // Restaura os dados originais e desmarca o veículo como "em edição"
     if (vehicle.originalData) {
-      vehicle.brand = vehicle.originalData.brand;
-      vehicle.model = vehicle.originalData.model;
-      vehicle.plate = vehicle.originalData.plate;
-      vehicle.chassi = vehicle.originalData.chassi;
-      vehicle.reindeer = vehicle.originalData.reindeer; // Alterado de 'renavam' para 'reindeer'
-      vehicle.year = vehicle.originalData.year;
+      vehicle.brand = vehicle.originalData?.brand;
+      vehicle.model = vehicle.originalData?.model;
+      vehicle.plate = vehicle.originalData?.plate;
+      vehicle.chassi = vehicle.originalData?.chassi;
+      vehicle.reindeer = vehicle.originalData?.reindeer; // Alterado de 'renavam' para 'reindeer'
+      vehicle.year = vehicle.originalData?.year;
       vehicle.isEditing = false;
     }
   }
 
   delete(vehicle: Vehicle) {
     this.vehicles = this.vehicles.filter((v) => v.id !== vehicle.id);
+  }
+
+  sortTable(property: keyof Vehicle) {
+    this.sortOrder = !this.sortOrder;
+    this.vehicles.sort((a, b) => {
+      if (a[property] && b[property]) {
+        if (a[property] < b[property]) {
+          return this.sortOrder ? -1 : 1;
+        } else if (a[property] > b[property]) {
+          return this.sortOrder ? 1 : -1;
+        }
+      }
+      return 0;
+    });
   }
 }

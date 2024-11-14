@@ -6,12 +6,12 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th style="min-width: 250px">Marca</th>
-        <th style="width: 100%">Modelo</th>
-        <th style="min-width: 150px">Ano</th>
-        <th style="min-width: 150px">Placa</th>
-        <th style="min-width: 250px">Chassi</th>
-        <th style="min-width: 250px">Renavam</th>
+        <th (click)="sortTable('brand')" style="cursor: pointer; min-width: 250px">Marca</th>
+        <th (click)="sortTable('model')" style="cursor: pointer; width: 100%">Modelo</th>
+        <th (click)="sortTable('year')" style="cursor: pointer; min-width: 150px">Ano</th>
+        <th (click)="sortTable('plate')" style="cursor: pointer; min-width: 150px">Placa</th>
+        <th (click)="sortTable('chassi')" style="cursor: pointer; min-width: 250px">Chassi</th>
+        <th (click)="sortTable('reindeer')" style="cursor: pointer; min-width: 250px">Reindeer</th>
         <th style="min-width: 200px"></th>
       </tr>
     </thead>
@@ -19,59 +19,27 @@
       <!-- Linha de novo veículo para edição, sempre no topo -->
       <tr *ngIf="isAddingNew">
         <td>
-          <input
-            [(ngModel)]="newVehicle.brand"
-            class="form-control"
-            placeholder="Marca"
-          />
+          <input [(ngModel)]="newVehicle.brand" class="form-control" placeholder="Marca" />
         </td>
         <td>
-          <input
-            [(ngModel)]="newVehicle.model"
-            class="form-control"
-            placeholder="Modelo"
-          />
+          <input [(ngModel)]="newVehicle.model" class="form-control" placeholder="Modelo" />
         </td>
         <td>
-          <input
-            [(ngModel)]="newVehicle.year"
-            class="form-control"
-            placeholder="Ano"
-          />
+          <input [(ngModel)]="newVehicle.year" class="form-control" placeholder="Ano" />
         </td>
         <td>
-          <input
-            [(ngModel)]="newVehicle.plate"
-            class="form-control"
-            placeholder="Placa"
-          />
+          <input [(ngModel)]="newVehicle.plate" class="form-control" placeholder="Placa" />
         </td>
         <td>
-          <input
-            [(ngModel)]="newVehicle.chassi"
-            class="form-control"
-            placeholder="Chassi"
-          />
+          <input [(ngModel)]="newVehicle.chassi" class="form-control" placeholder="Chassi" />
         </td>
         <td>
-          <input
-            [(ngModel)]="newVehicle.reindeer"
-            class="form-control"
-            placeholder="Renavam"
-          />
+          <input [(ngModel)]="newVehicle.reindeer" class="form-control" placeholder="Reindeer" />
         </td>
         <td style="align-items: center">
           <div class="btns-field">
-            <button
-              (click)="saveNewVehicle()"
-              class="btn btn-success btn-sm"
-              style="margin-right: 18px"
-            >
-              Salvar
-            </button>
-            <button (click)="cancelNewVehicle()" class="btn btn-secondary btn-sm">
-              Cancelar
-            </button>
+            <button (click)="saveNewVehicle()" class="btn btn-success btn-sm" style="margin-right: 18px">Salvar</button>
+            <button (click)="cancelNewVehicle()" class="btn btn-secondary btn-sm">Cancelar</button>
           </div>
         </td>
       </tr>
@@ -79,130 +47,38 @@
       <!-- Exibe os veículos existentes -->
       <tr style="height: 4rem;" *ngFor="let vehicle of vehicles; let i = index">
         <td>
-          <input
-            *ngIf="!vehicle.isEditing"
-            [(ngModel)]="vehicle.brand"
-            class="form-control"
-            [disabled]="true"
-          />
-          <input
-            *ngIf="vehicle.isEditing"
-            [(ngModel)]="vehicle.brand"
-            class="form-control"
-            placeholder="Marca"
-          />
+          <input *ngIf="!vehicle.isEditing" [(ngModel)]="vehicle.brand" class="form-control" [disabled]="true" />
+          <input *ngIf="vehicle.isEditing" [(ngModel)]="vehicle.brand" class="form-control" placeholder="Marca" />
         </td>
         <td>
-          <input
-            *ngIf="!vehicle.isEditing"
-            [(ngModel)]="vehicle.model"
-            class="form-control"
-            [disabled]="true"
-          />
-          <input
-            *ngIf="vehicle.isEditing"
-            [(ngModel)]="vehicle.model"
-            class="form-control"
-            placeholder="Modelo"
-          />
+          <input *ngIf="!vehicle.isEditing" [(ngModel)]="vehicle.model" class="form-control" [disabled]="true" />
+          <input *ngIf="vehicle.isEditing" [(ngModel)]="vehicle.model" class="form-control" placeholder="Modelo" />
         </td>
         <td>
-          <input
-            *ngIf="!vehicle.isEditing"
-            [(ngModel)]="vehicle.year"
-            class="form-control"
-            [disabled]="true"
-          />
-          <input
-            *ngIf="vehicle.isEditing"
-            [(ngModel)]="vehicle.year"
-            class="form-control"
-            placeholder="Ano"
-          />
+          <input *ngIf="!vehicle.isEditing" [(ngModel)]="vehicle.year" class="form-control" [disabled]="true" />
+          <input *ngIf="vehicle.isEditing" [(ngModel)]="vehicle.year" class="form-control" placeholder="Ano" />
         </td>
         <td>
-          <input
-            *ngIf="!vehicle.isEditing"
-            [(ngModel)]="vehicle.plate"
-            class="form-control"
-            [disabled]="true"
-          />
-          <input
-            *ngIf="vehicle.isEditing"
-            [(ngModel)]="vehicle.plate"
-            class="form-control"
-            placeholder="Placa"
-          />
+          <input *ngIf="!vehicle.isEditing" [(ngModel)]="vehicle.plate" class="form-control" [disabled]="true" />
+          <input *ngIf="vehicle.isEditing" [(ngModel)]="vehicle.plate" class="form-control" placeholder="Placa" />
         </td>
         <td>
-          <input
-            *ngIf="!vehicle.isEditing"
-            [(ngModel)]="vehicle.chassi"
-            class="form-control"
-            [disabled]="true"
-          />
-          <input
-            *ngIf="vehicle.isEditing"
-            [(ngModel)]="vehicle.chassi"
-            class="form-control"
-            placeholder="Chassi"
-          />
+          <input *ngIf="!vehicle.isEditing" [(ngModel)]="vehicle.chassi" class="form-control" [disabled]="true" />
+          <input *ngIf="vehicle.isEditing" [(ngModel)]="vehicle.chassi" class="form-control" placeholder="Chassi" />
         </td>
         <td>
-          <input
-            *ngIf="!vehicle.isEditing"
-            [(ngModel)]="vehicle.reindeer"
-            class="form-control"
-            [disabled]="true"
-          />
-          <input
-            *ngIf="vehicle.isEditing"
-            [(ngModel)]="vehicle.reindeer"
-            class="form-control"
-            placeholder="Reindeer"
-          />
+          <input *ngIf="!vehicle.isEditing" [(ngModel)]="vehicle.reindeer" class="form-control" [disabled]="true" />
+          <input *ngIf="vehicle.isEditing" [(ngModel)]="vehicle.reindeer" class="form-control" placeholder="Reindeer" />
         </td>
 
         <td style="align-items: center">
           <div class="btns-field">
-            <button
-              *ngIf="!vehicle.isEditing"
-              (click)="editVehicle(i)"
-              style="
-                border: none;
-                background: none;
-                padding: 0;
-                cursor: pointer;
-                margin-right: 36px;
-              "
-            >
-              <img src="edit.svg" alt="Deletar" />
+            <button *ngIf="!vehicle.isEditing" (click)="editVehicle(i)" style="border: none; background: none; padding: 0; cursor: pointer; margin-right: 36px;">
+              <img src="edit.svg" alt="Editar" />
             </button>
-            <button
-              *ngIf="vehicle.isEditing"
-              (click)="saveVehicle(i)"
-              class="btn btn-success btn-sm"
-              style="margin-right: 18px"
-            >
-              Salvar
-            </button>
-            <button
-              *ngIf="vehicle.isEditing"
-              (click)="cancelEdit(vehicle)"
-              class="btn btn-secondary btn-sm"
-            >
-              Cancelar
-            </button>
-            <button
-              *ngIf="!vehicle.isEditing"
-              (click)="delete(vehicle)"
-              style="
-                border: none;
-                background: none;
-                padding: 0;
-                cursor: pointer;
-              "
-            >
+            <button *ngIf="vehicle.isEditing" (click)="saveVehicle(i)" class="btn btn-success btn-sm" style="margin-right: 18px">Salvar</button>
+            <button *ngIf="vehicle.isEditing" (click)="cancelEdit(vehicle)" class="btn btn-secondary btn-sm">Cancelar</button>
+            <button *ngIf="!vehicle.isEditing" (click)="delete(vehicle)" style="border: none; background: none; padding: 0; cursor: pointer;">
               <img src="delete.svg" alt="Deletar" />
             </button>
           </div>
