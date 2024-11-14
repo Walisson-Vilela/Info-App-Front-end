@@ -22,3 +22,9 @@ input:focus {
   outline: none; /* Remove o contorno padrão do navegador */
 }
 
+.btns-field {
+  display: flex;
+  height: 3rem;
+  align-items: center;
+  justify-content: flex-end;
+}

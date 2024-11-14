@@ -60,19 +60,24 @@
             placeholder="Renavam"
           />
         </td>
-        <!-- Alterado de "Renavam" para "Reindeer" -->
-        <td>
-          <button (click)="saveNewVehicle()" class="btn btn-success">
-            Salvar
-          </button>
-          <button (click)="cancelNewVehicle()" class="btn btn-secondary">
-            Cancelar
-          </button>
+        <td style="align-items: center">
+          <div class="btns-field">
+            <button
+              (click)="saveNewVehicle()"
+              class="btn btn-success btn-sm"
+              style="margin-right: 18px"
+            >
+              Salvar
+            </button>
+            <button (click)="cancelNewVehicle()" class="btn btn-secondary btn-sm">
+              Cancelar
+            </button>
+          </div>
         </td>
       </tr>
 
       <!-- Exibe os veículos existentes -->
-      <tr *ngFor="let vehicle of vehicles; let i = index">
+      <tr style="height: 4rem;" *ngFor="let vehicle of vehicles; let i = index">
         <td>
           <input
             *ngIf="!vehicle.isEditing"
@@ -87,7 +92,6 @@
             placeholder="Marca"
           />
         </td>
-
         <td>
           <input
             *ngIf="!vehicle.isEditing"
@@ -102,7 +106,6 @@
             placeholder="Modelo"
           />
         </td>
-
         <td>
           <input
             *ngIf="!vehicle.isEditing"
@@ -117,7 +120,6 @@
             placeholder="Ano"
           />
         </td>
-
         <td>
           <input
             *ngIf="!vehicle.isEditing"
@@ -132,7 +134,6 @@
             placeholder="Placa"
           />
         </td>
-
         <td>
           <input
             *ngIf="!vehicle.isEditing"
@@ -147,7 +148,6 @@
             placeholder="Chassi"
           />
         </td>
-
         <td>
           <input
             *ngIf="!vehicle.isEditing"
@@ -163,29 +163,49 @@
           />
         </td>
 
-        <td style="align-items: ">
-          <button
-            *ngIf="!vehicle.isEditing"
-            (click)="editVehicle(i)"
-            class="btn btn-warning"
-          >
-            Editar
-          </button>
-          <button
-            *ngIf="vehicle.isEditing"
-            (click)="saveVehicle(i)"
-            class="btn btn-success"
-          >
-            Salvar
-          </button>
-          <button
-            *ngIf="vehicle.isEditing"
-            (click)="cancelEdit(vehicle)"
-            class="btn btn-secondary"
-          >
-            Cancelar
-          </button>
-          <img src="/public/icon-delete.svg" alt="Deletar" />
+        <td style="align-items: center">
+          <div class="btns-field">
+            <button
+              *ngIf="!vehicle.isEditing"
+              (click)="editVehicle(i)"
+              style="
+                border: none;
+                background: none;
+                padding: 0;
+                cursor: pointer;
+                margin-right: 36px;
+              "
+            >
+              <img src="edit.svg" alt="Deletar" />
+            </button>
+            <button
+              *ngIf="vehicle.isEditing"
+              (click)="saveVehicle(i)"
+              class="btn btn-success btn-sm"
+              style="margin-right: 18px"
+            >
+              Salvar
+            </button>
+            <button
+              *ngIf="vehicle.isEditing"
+              (click)="cancelEdit(vehicle)"
+              class="btn btn-secondary btn-sm"
+            >
+              Cancelar
+            </button>
+            <button
+              *ngIf="!vehicle.isEditing"
+              (click)="delete(vehicle)"
+              style="
+                border: none;
+                background: none;
+                padding: 0;
+                cursor: pointer;
+              "
+            >
+              <img src="delete.svg" alt="Deletar" />
+            </button>
+          </div>
         </td>
       </tr>
     </tbody>
