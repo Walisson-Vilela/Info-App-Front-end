@@ -61,9 +61,10 @@ export class VehicleListComponent {
 
   saveNewVehicle() {
     if (this.newVehicle.brand && this.newVehicle.model && this.newVehicle.plate) {
-      // Adiciona o novo veículo ao array
-      this.newVehicle.id = this.vehicles.length + 1; // Atribui um ID único
-      this.vehicles.push({ ...this.newVehicle });
+      // Atribui um ID único para o novo veículo (número de veículos + 1)
+      this.newVehicle.id = this.vehicles.length + 1;
+      // Adiciona o novo veículo no início da tabela (usando unshift())
+      this.vehicles.unshift({ ...this.newVehicle });
       this.cancelNewVehicle(); // Cancela o modo de adicionar após salvar
     }
   }
