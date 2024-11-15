@@ -258,7 +258,8 @@
               Cancelar
             </button>
             <button
-            data-bs-toggle="modal" data-bs-target="#handleOpenModal"
+              data-bs-toggle="modal"
+              data-bs-target="#handleOpenModal"
               *ngIf="!vehicle.isEditing"
               (click)="delete(vehicle)"
               style="
@@ -277,21 +278,58 @@
   </table>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="handleOpenModal" tabindex="-1" aria-labelledby="handleOpenModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="handleOpenModal"
+  tabindex="-1"
+  aria-labelledby="handleOpenModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="handleOpenModalLabel">Confirmar Exclusão</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h1 class="modal-title fs-5" id="handleOpenModalLabel">
+          Confirmar Exclusão
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
-        Você tem certeza que deseja excluir este veículo?
-        Essa ação será irreversível.
+        Você tem certeza que deseja excluir este veículo? Essa ação será
+        irreversível.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" (click)="confirmDelete()"data-bs-dismiss="modal" class="btn btn-danger">Deletar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button
+          type="button"
+          (click)="confirmDelete()"
+          data-bs-dismiss="modal"
+          class="btn btn-danger"
+        >
+          Deletar
+        </button>
       </div>
     </div>
   </div>
+</div>
+<!-- Alerta de Salvamento com sucesso -->
+<div
+  *ngIf="showSuccessAlert"
+  class="alert alert-success alert-dismissible fade show fixed-top custom-alert"
+  role="alert"
+  style="z-index: 1050; margin-top: 10px;"
+>
+  <strong>Sucesso!</strong> Os dados foram salvos com sucesso.
+  <button
+    type="button"
+    class="btn-close"
+    (click)="closeAlert()"
+    aria-label="Close"
+  ></button>
 </div>

@@ -47,6 +47,7 @@ export class VehicleListComponent {
       year: 2019,
     },
   ];
+  showSuccessAlert: boolean = false;
   showDeleteModal: boolean = false;
   vehicleToDelete: any = null;
   newVehicle: Vehicle = {
@@ -92,6 +93,12 @@ export class VehicleListComponent {
       // Adiciona o novo veículo no início da tabela (usando unshift())
       this.vehicles.unshift({ ...this.newVehicle });
       this.cancelNewVehicle(); // Cancela a inserção de novo veículo após salvar
+      this.showSuccessAlert = true;  // Exibe o alerta de sucesso
+
+      // Simula uma ação de salvar (ex: serviço, requisição HTTP)
+      setTimeout(() => {
+        this.showSuccessAlert = false;  // Esconde o alerta após 3 segundos
+      }, 3000);
     }
   }
 
@@ -118,9 +125,12 @@ export class VehicleListComponent {
       vehicle.reindeer &&
       vehicle.year
     ) {
-      // Salva as alterações e desmarca o veículo como "em edição"
       vehicle.isEditing = false;
     }
+    this.showSuccessAlert = true;
+    setTimeout(() => {
+      this.showSuccessAlert = false;  // Esconde o alerta após 3 segundos
+    }, 3000);
   }
 
   cancelEdit(vehicle: Vehicle) {
@@ -172,5 +182,9 @@ export class VehicleListComponent {
       }
       return 0;
     });
+  }
+
+  closeAlert() {
+    this.showSuccessAlert = false;
   }
 }
