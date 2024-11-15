@@ -9,17 +9,15 @@
 
 .table-container {
   box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.1);
-  display: flexbox;
+  display: flex;
   align-items: center;
   border-left: 1px #dcdcdc solid;
   border-bottom: 1px #dcdcdc solid;
   border-right: 1px #dcdcdc solid;
   background-color: #fff;
   overflow: auto;
-  /* height: 100%; */
   max-height: calc(100vh - 300px);
 }
-
 
 .table {
   font-size: 0.8rem;
