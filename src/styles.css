@@ -3,6 +3,7 @@
 }
 
 .primary-btn {
+  width: 100%;
   padding: 0.3rem 1rem;
   border: 2px  transparent solid;
   background-color: #fbbb00;
