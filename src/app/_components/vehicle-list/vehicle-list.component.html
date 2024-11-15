@@ -11,8 +11,8 @@
   <table class="table">
     <thead>
       <tr class="th">
-        <th (click)="sortTable('brand')" class="th" style="min-width: 250px">
-          Marca <span *ngIf="sortOrder['brand'] !== true">▼</span>
+        <th (click)="sortTable('brand')" class="th" style="cursor: pointer;min-width: 250px">
+          MARCA <span *ngIf="sortOrder['brand'] !== true">▼</span>
           <span *ngIf="sortOrder['brand'] === true">▲</span>
         </th>
         <th
@@ -20,7 +20,7 @@
           (click)="sortTable('model')"
           style="cursor: pointer; width: 100%; min-width: 200px"
         >
-          Modelo <span *ngIf="sortOrder['model'] !== true">▼</span>
+          MODELO <span *ngIf="sortOrder['model'] !== true">▼</span>
           <span *ngIf="sortOrder['model'] === true">▲</span>
         </th>
         <th
@@ -28,7 +28,7 @@
           (click)="sortTable('year')"
           style="cursor: pointer; min-width: 150px"
         >
-          Ano <span *ngIf="sortOrder['year'] !== true">▼</span>
+          ANO <span *ngIf="sortOrder['year'] !== true">▼</span>
           <span *ngIf="sortOrder['year'] === true">▲</span>
         </th>
         <th
@@ -36,7 +36,7 @@
           (click)="sortTable('plate')"
           style="cursor: pointer; min-width: 150px"
         >
-          Placa <span *ngIf="sortOrder['plate'] !== true">▼</span>
+          PLACA <span *ngIf="sortOrder['plate'] !== true">▼</span>
           <span *ngIf="sortOrder['plate'] === true">▲</span>
         </th>
         <th
@@ -44,7 +44,7 @@
           (click)="sortTable('chassi')"
           style="cursor: pointer; min-width: 250px"
         >
-          Chassi <span *ngIf="sortOrder['chassi'] !== true">▼</span>
+          CHASSI <span *ngIf="sortOrder['chassi'] !== true">▼</span>
           <span *ngIf="sortOrder['chassi'] === true">▲</span>
         </th>
         <th
@@ -52,7 +52,7 @@
           (click)="sortTable('reindeer')"
           style="cursor: pointer; min-width: 250px"
         >
-          Renavam <span *ngIf="sortOrder['reindeer'] !== true">▼</span>
+          RENAVAM <span *ngIf="sortOrder['reindeer'] !== true">▼</span>
           <span *ngIf="sortOrder['reindeer'] === true">▲</span>
         </th>
         <th
