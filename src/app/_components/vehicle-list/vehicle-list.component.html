@@ -333,3 +333,19 @@
     aria-label="Close"
   ></button>
 </div>
+
+<!-- Alerta de Atenção -->
+<div
+  *ngIf="showAttentionAlert"
+  class="alert alert-warning alert-dismissible fade show fixed-top custom-alert"
+  role="alert"
+  style="z-index: 1050; margin-top: 10px;"
+>
+  <strong>Atenção!</strong> {{ attentionMessage }}
+  <button
+    type="button"
+    class="btn-close"
+    (click)="closeAttentionAlert()"
+    aria-label="Close"
+  ></button>
+</div>
