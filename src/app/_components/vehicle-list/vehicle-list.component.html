@@ -90,6 +90,7 @@
             [(ngModel)]="newVehicle.plate"
             class="form-control"
             placeholder="Placa"
+            mask="AAA-0A00"
           />
         </td>
         <td>
@@ -175,12 +176,14 @@
             [(ngModel)]="vehicle.plate"
             class="form-control"
             [disabled]="true"
+            mask="AAA-0A00"
           />
           <input
             *ngIf="vehicle.isEditing"
             [(ngModel)]="vehicle.plate"
             class="form-control"
             placeholder="Placa"
+            mask="AAA-0A00"
           />
         </td>
         <td>
