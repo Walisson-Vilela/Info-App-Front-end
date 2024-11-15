@@ -1,6 +1,40 @@
-.container-fluid {
-  padding: 1rem;
-  margin-top: 6rem;
+.header {
+  display: flex;
+  margin-top: 8rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 4;
+}
+
+.table-container {
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.1);
+  display: flexbox;
+  align-items: center;
+  border-left: 1px #dcdcdc solid;
+  border-bottom: 1px #dcdcdc solid;
+  border-right: 1px #dcdcdc solid;
+  background-color: #fff;
+  overflow: auto;
+  height: 100%;
+  max-height: calc(100vh - 300px);
+}
+
+
+.table {
+  font-size: 0.8rem;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.th {
+  position: sticky;
+  top: 0;
+  height: 24px;
+  max-height: 24px;
+  justify-content: space-around;
+  background: #d0d5e0;
+  z-index: 1;
+  border-bottom: 1px #d0d5e0 solid;
 }
 
 input {

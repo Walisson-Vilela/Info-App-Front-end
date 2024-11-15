@@ -6,10 +6,10 @@ interface Vehicle {
   model: string;
   plate: string;
   chassi?: string;
-  reindeer?: string;  // Alterado de 'renavam' para 'reindeer'
+  reindeer?: string;
   year?: number;
   isEditing?: boolean;
-  originalData?: Vehicle; // Para armazenar os dados originais antes da edição
+  originalData?: Vehicle;
 }
 
 @Component({
@@ -25,7 +25,7 @@ export class VehicleListComponent {
       model: 'Corolla',
       plate: 'ABC-1234',
       chassi: 'JTDBE32K123456789',
-      reindeer: '123456789', // Alterado de 'renavam' para 'reindeer'
+      reindeer: '123456789',
       year: 2020,
     },
     {
@@ -34,7 +34,7 @@ export class VehicleListComponent {
       model: 'Civic',
       plate: 'XYZ-5678',
       chassi: '2HGES165X12345678',
-      reindeer: '987654321', // Alterado de 'renavam' para 'reindeer'
+      reindeer: '987654321',
       year: 2021,
     },
     {
@@ -43,18 +43,18 @@ export class VehicleListComponent {
       model: 'Fiesta',
       plate: 'LMN-9101',
       chassi: '3FADP4BJ4EM123456',
-      reindeer: '112233445', // Alterado de 'renavam' para 'reindeer'
+      reindeer: '112233445',
       year: 2019,
     },
   ];
 
-  newVehicle: Vehicle = { id: 0, brand: '', model: '', plate: '', chassi: '', reindeer: '', year: 0 }; // Alterado de 'renavam' para 'reindeer'
+  newVehicle: Vehicle = { id: 0, brand: '', model: '', plate: '', chassi: '', reindeer: '', year: 0 };
   isAddingNew: boolean = false;
 
   selectedVehicle: Vehicle | null = null;
   isEditing: boolean = false;
 
-  sortOrder: { [key: string]: boolean } = {}; // Object to track sort order for each column
+  sortOrder: { [key: string]: boolean } = {};
 
   addNewVehicle() {
     this.isAddingNew = true; // Habilita a linha de inserção

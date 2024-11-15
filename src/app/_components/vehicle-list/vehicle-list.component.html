@@ -1,29 +1,30 @@
-<div class="container-fluid">
-  <div style=" width: 200px;">
-    <button
-      (click)="addNewVehicle()"
-      class="primary-btn"
-      style="margin-bottom: 2rem"
-    >
-      Adicionar Veículo
-    </button>
-  </div>
-
-  <table class="table table-hover">
+<div class="header">
+  <button
+    (click)="addNewVehicle()"
+    class="primary-btn"
+    style="margin-bottom: 2rem"
+  >
+    Adicionar Veículo
+  </button>
+</div>
+<div class="table-container">
+  <table class="table">
     <thead>
-      <tr>
-        <th
-          (click)="sortTable('brand')"
-          style="cursor: pointer; min-width: 250px"
-        >
+      <tr class="th">
+        <th (click)="sortTable('brand')" class="th" style="min-width: 250px">
           Marca <span *ngIf="sortOrder['brand'] !== true">▼</span>
           <span *ngIf="sortOrder['brand'] === true">▲</span>
         </th>
-        <th (click)="sortTable('model')" style="cursor: pointer; width: 100%">
+        <th
+          class="th"
+          (click)="sortTable('model')"
+          style="cursor: pointer; width: 100%; min-width: 200px"
+        >
           Modelo <span *ngIf="sortOrder['model'] !== true">▼</span>
           <span *ngIf="sortOrder['model'] === true">▲</span>
         </th>
         <th
+          class="th"
           (click)="sortTable('year')"
           style="cursor: pointer; min-width: 150px"
         >
@@ -31,6 +32,7 @@
           <span *ngIf="sortOrder['year'] === true">▲</span>
         </th>
         <th
+          class="th"
           (click)="sortTable('plate')"
           style="cursor: pointer; min-width: 150px"
         >
@@ -38,6 +40,7 @@
           <span *ngIf="sortOrder['plate'] === true">▲</span>
         </th>
         <th
+          class="th"
           (click)="sortTable('chassi')"
           style="cursor: pointer; min-width: 250px"
         >
@@ -45,13 +48,17 @@
           <span *ngIf="sortOrder['chassi'] === true">▲</span>
         </th>
         <th
+          class="th"
           (click)="sortTable('reindeer')"
           style="cursor: pointer; min-width: 250px"
         >
-          Reindeer <span *ngIf="sortOrder['reindeer'] !== true">▼</span>
+          Renavam <span *ngIf="sortOrder['reindeer'] !== true">▼</span>
           <span *ngIf="sortOrder['reindeer'] === true">▲</span>
         </th>
-        <th style="min-width: 200px"></th>
+        <th
+          class="th"
+          style="position: sticky; right: 0; z-index: 3; min-width: 200px"
+        ></th>
       </tr>
     </thead>
     <tbody>
@@ -205,7 +212,7 @@
           />
         </td>
 
-        <td style="align-items: center">
+        <td style="align-items: center; position: sticky; right: 0; z-index: 0; min-width: 200px">
           <div class="btns-field">
             <button
               *ngIf="!vehicle.isEditing"
