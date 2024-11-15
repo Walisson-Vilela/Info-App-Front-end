@@ -4,8 +4,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },  // Rota padrão
-  { path: 'home', component: HomeComponent },  // Rota home sem barra inicial
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent }, // Rota home sem barra inicial
 ];
 
 @NgModule({
