@@ -47,8 +47,17 @@ export class VehicleListComponent {
       year: 2019,
     },
   ];
-
-  newVehicle: Vehicle = { id: 0, brand: '', model: '', plate: '', chassi: '', reindeer: '', year: 0 };
+  showDeleteModal: boolean = false;
+  vehicleToDelete: any = null;
+  newVehicle: Vehicle = {
+    id: 0,
+    brand: '',
+    model: '',
+    plate: '',
+    chassi: '',
+    reindeer: '',
+    year: 0,
+  };
   isAddingNew: boolean = false;
 
   selectedVehicle: Vehicle | null = null;
@@ -58,11 +67,26 @@ export class VehicleListComponent {
 
   addNewVehicle() {
     this.isAddingNew = true; // Habilita a linha de inserção
-    this.newVehicle = { id: 0, brand: '', model: '', plate: '', chassi: '', reindeer: '', year: 0 }; // Limpa os campos
+    this.newVehicle = {
+      id: 0,
+      brand: '',
+      model: '',
+      plate: '',
+      chassi: '',
+      reindeer: '',
+      year: 0,
+    }; // Limpa os campos
   }
 
   saveNewVehicle() {
-    if (this.newVehicle.brand && this.newVehicle.model && this.newVehicle.plate && this.newVehicle.chassi && this.newVehicle.reindeer && this.newVehicle.year) {
+    if (
+      this.newVehicle.brand &&
+      this.newVehicle.model &&
+      this.newVehicle.plate &&
+      this.newVehicle.chassi &&
+      this.newVehicle.reindeer &&
+      this.newVehicle.year
+    ) {
       // Atribui um ID único para o novo veículo (número de veículos + 1)
       this.newVehicle.id = this.vehicles.length + 1;
       // Adiciona o novo veículo no início da tabela (usando unshift())
@@ -85,7 +109,15 @@ export class VehicleListComponent {
 
   saveVehicle(index: number) {
     const vehicle = this.vehicles[index];
-    if (vehicle && vehicle.brand && vehicle.model && vehicle.plate && vehicle.chassi && vehicle.reindeer && vehicle.year) {
+    if (
+      vehicle &&
+      vehicle.brand &&
+      vehicle.model &&
+      vehicle.plate &&
+      vehicle.chassi &&
+      vehicle.reindeer &&
+      vehicle.year
+    ) {
       // Salva as alterações e desmarca o veículo como "em edição"
       vehicle.isEditing = false;
     }
@@ -104,10 +136,30 @@ export class VehicleListComponent {
     }
   }
 
-  delete(vehicle: Vehicle) {
-    this.vehicles = this.vehicles.filter((v) => v.id !== vehicle.id);
+  // Função chamada ao clicar no botão de excluir
+  delete(vehicle: any): void {
+    this.vehicleToDelete = vehicle;
+    this.showDeleteModal = true;
   }
 
+  // Função chamada quando o usuário confirma a exclusão
+  confirmDelete(): void {
+    // Aqui você pode adicionar a lógica para excluir o veículo (por exemplo, via API ou array local)
+    const index = this.vehicles.indexOf(this.vehicleToDelete);
+    if (index > -1) {
+      this.vehicles.splice(index, 1); // Remove o veículo do array
+    }
+
+    // Fechar o modal após a exclusão
+    this.showDeleteModal = false;
+    this.vehicleToDelete = null;
+  }
+
+  // Função chamada quando o usuário cancela a exclusão
+  cancelDelete(): void {
+    this.showDeleteModal = false;
+    this.vehicleToDelete = null;
+  }
   sortTable(property: keyof Vehicle) {
     this.sortOrder[property] = !this.sortOrder[property];
     this.vehicles.sort((a, b) => {
