@@ -9,6 +9,7 @@ import { FooterComponent } from './_components/footer/footer.component';
 import { VehicleListComponent } from './_components/vehicle-list/vehicle-list.component';
 import { FormsModule } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { NgOptimizedImage } from '@angular/common';
     NavbarComponent,
     FooterComponent,
     VehicleListComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,60 @@
+/* Remover margens e preenchimentos padrão do body e da container */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.container-fluid {
+  display: flex;
+  height: 100vh; /* 100% da altura da tela */
+  padding: 0; /* Garantir que não haja padding extra */
+  margin: 0;  /* Garantir que não haja margem extra */
+}
+
+.background {
+  flex: 1; /* A imagem ocupa metade da tela */
+  background-image: url('https://via.placeholder.com/800x600'); /* Imagem de fundo */
+  background-size: cover; /* Faz a imagem cobrir toda a área */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.login {
+  flex: 1; /* O formulário ocupa a outra metade da tela */
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  background-color: #f8f9fa; /* Cor de fundo do formulário */
+}
+
+.card {
+  width: 100%;
+  max-width: 400px; /* Limita a largura do card */
+  border-radius: 8px; /* Bordas arredondadas para o card */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Sombra suave no card */
+}
+
+.card-body {
+  padding: 30px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container-fluid {
+    flex-direction: column; /* Para telas pequenas, as colunas se tornam empilhadas */
+  }
+
+  .background,
+  .login {
+    flex: none;
+    width: 100%;
+  }
+}
