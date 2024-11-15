@@ -41,7 +41,12 @@
         </div>
         <div style="display: flex; flex-flow: row nowrap; align-items: center;">
           <span style="margin-right: 1rem; color: white;" >Bem vindo(a) Walisson</span>
-        <img style="width: 2.5rem" src="logout.svg" />
+          <img
+          style="width: 2rem; cursor: pointer"
+          src="logout.svg"
+          alt="Ícone de logout"
+          (click)="onLogout()"
+          />
       </div>
       </form>
     </div>
