@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { VehicleService } from '../../services/vehicle.service'; // Importe o serviço
+import { Observable } from 'rxjs';
 
 interface Vehicle {
   id: number;
@@ -17,12 +19,9 @@ interface Vehicle {
   templateUrl: './vehicle-list.component.html',
   styleUrls: ['./vehicle-list.component.css'],
 })
+
 export class VehicleListComponent {
-  vehicles: Vehicle[] = [
-    { id: 1, brand: 'Toyota', model: 'Corolla', plate: 'ABC-1234', chassi: 'JTDBE32K123456789', reindeer: '123456789', year: 2020 },
-    { id: 2, brand: 'Honda', model: 'Civic', plate: 'XYZ-5678', chassi: '2HGES165X12345678', reindeer: '987654321', year: 2021 },
-    { id: 3, brand: 'Ford', model: 'Fiesta', plate: 'LMN-9101', chassi: '3FADP4BJ4EM123456', reindeer: '112233445', year: 2019 },
-  ];
+  vehicles: Vehicle[] = [];
 
   showSuccessAlert: boolean = false;
   showAttentionAlert: boolean = false;
@@ -31,13 +30,28 @@ export class VehicleListComponent {
   vehicleToDelete: any = null;
   newVehicle: Vehicle = { id: 0, brand: '', model: '', plate: '', chassi: '', reindeer: '', year: 0 };
   isAddingNew: boolean = false;
-
   selectedVehicle: Vehicle | null = null;
   isEditing: boolean = false;
-
   sortOrder: { [key: string]: boolean } = {};
 
-  addNewVehicle() {
+  constructor(private vehicleService: VehicleService) {}
+
+  ngOnInit(): void {
+    this.loadVehicles();  // Carregue os veículos da API ao inicializar o componente
+  }
+
+  loadVehicles(): void {
+    this.vehicleService.getAllVehicles().subscribe(
+      (data) => {
+        this.vehicles = data;
+      },
+      (error) => {
+        console.error('Erro ao carregar veículos:', error);
+      }
+    );
+  }
+
+   addNewVehicle() {
     this.isAddingNew = true;
     this.newVehicle = { id: 0, brand: '', model: '', plate: '', chassi: '', reindeer: '', year: 0 };
   }
@@ -107,6 +121,20 @@ export class VehicleListComponent {
         this.showAttentionAlert = false;
       }, 3000);
     }
+    this.vehicleService.createVehicle(this.newVehicle).subscribe(
+      (vehicle) => {
+        this.vehicles.unshift(vehicle);  // Adiciona o veículo na lista local
+        this.cancelNewVehicle();
+        this.showSuccessAlert = true;
+
+        setTimeout(() => {
+          this.showSuccessAlert = false;
+        }, 3000);
+      },
+      (error) => {
+        console.error('Erro ao salvar veículo:', error);
+      }
+    );
   }
 
 
@@ -185,6 +213,20 @@ export class VehicleListComponent {
         this.showAttentionAlert = false;
       }, 3000);
     }
+    this.vehicleService.updateVehicle(vehicle.id, vehicle).subscribe(
+      (updatedVehicle) => {
+        this.vehicles[index] = updatedVehicle;  // Atualiza o veículo na lista local
+        vehicle.isEditing = false;
+        this.showSuccessAlert = true;
+
+        setTimeout(() => {
+          this.showSuccessAlert = false;
+        }, 3000);
+      },
+      (error) => {
+        console.error('Erro ao atualizar veículo:', error);
+      }
+    );
   }
 
   cancelEdit(vehicle: Vehicle) {
@@ -207,14 +249,20 @@ export class VehicleListComponent {
   confirmDelete(): void {
     const index = this.vehicles.indexOf(this.vehicleToDelete);
     if (index > -1) {
-      this.vehicles.splice(index, 1);
+      this.vehicleService.deleteVehicle(this.vehicleToDelete.id).subscribe(
+        () => {
+          this.vehicles.splice(index, 1);  // Remove o veículo da lista local
+          this.showDeleteModal = false;
+          this.vehicleToDelete = null;
+        },
+        (error) => {
+          console.error('Erro ao excluir veículo:', error);
+        }
+      );
     }
-
-    this.showDeleteModal = false;
-    this.vehicleToDelete = null;
   }
 
-  cancelDelete(): void {
+ cancelDelete(): void {
     this.showDeleteModal = false;
     this.vehicleToDelete = null;
   }

@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
 import { LoginComponent } from './pages/login/login.component';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     NgOptimizedImage,
     NgxMaskDirective,
     ReactiveFormsModule,
