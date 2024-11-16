@@ -12,6 +12,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { HttpClientModule } from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     NgxMaskDirective,
     ReactiveFormsModule,
   ],
-  providers: [provideNgxMask({ /* opções de cfg */ })],
+  providers: [provideNgxMask({})],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

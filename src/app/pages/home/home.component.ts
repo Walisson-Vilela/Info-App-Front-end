@@ -1,9 +1,23 @@
-import { Component, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    // Verifica se o token existe no localStorage
+    const token = localStorage.getItem('authToken');
+
+    if (!token) {
+      // Se não houver token, redireciona para a página de login
+      this.router.navigate(['/login']);
+    }
+  }
+
 }

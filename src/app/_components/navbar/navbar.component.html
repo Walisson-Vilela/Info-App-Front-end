@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg">
   <div style="display: flex; justify-content: space-between; width: 100%;">
-    <div class="container-fluid" >
+    <div class="container-fluid">
       <div style="display: flex; flex-direction: row;">
-        <img src="logotipo.png"/><span class="logotype">App</span>
+        <img src="logotipo.png" /><span class="logotype">App</span>
       </div>
       <button
         class="navbar-toggler"
@@ -40,14 +40,16 @@
           <img src="search.svg" alt="Ícone de busca" class="search-icon" />
         </div>
         <div style="display: flex; flex-flow: row nowrap; align-items: center;">
-          <span style="margin-right: 1rem; color: white;" >Bem vindo(a) Walisson</span>
+          <span style="margin-right: 1rem; color: white;" >
+            Bem-vindo(a), {{ username }}
+          </span>
           <img
-          style="width: 2rem; cursor: pointer"
-          src="logout.svg"
-          alt="Ícone de logout"
-          (click)="onLogout()"
+            style="width: 2rem; cursor: pointer"
+            src="logout.svg"
+            alt="Ícone de logout"
+            (click)="onLogout()"
           />
-      </div>
+        </div>
       </form>
     </div>
   </div>
