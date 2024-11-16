@@ -40,6 +40,7 @@ input {
   border: 1px solid #ccc;
   padding: 0.5rem;
   border-radius: 4px;
+  text-transform: uppercase;
 
   &:disabled {
     background-color: transparent;
@@ -68,3 +69,4 @@ input {
   top: 10px;                   /* Define a distância do topo da tela */
   z-index: 1050;               /* Garante que o alerta ficará acima de outros elementos */
 }
+

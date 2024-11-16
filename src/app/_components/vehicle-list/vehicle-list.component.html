@@ -130,9 +130,8 @@
           </div>
         </td>
       </tr>
-
       <!-- Exibe os veículos existentes -->
-      <tr style="height: 4rem" *ngFor="let vehicle of vehicles; let i = index">
+      <tr *ngFor="let vehicle of vehicles; let i = index">
         <td>
           <input
             *ngIf="!vehicle.isEditing"
