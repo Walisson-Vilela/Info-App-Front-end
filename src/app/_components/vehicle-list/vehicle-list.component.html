@@ -11,53 +11,70 @@
   <table class="table">
     <thead>
       <tr class="th">
-        <th
-          (click)="sortTable('brand')"
-          class="th"
-          style="cursor: pointer; min-width: 250px"
-        >
-          MARCA <span *ngIf="sortOrder['brand'] !== true">▼</span>
-          <span *ngIf="sortOrder['brand'] === true">▲</span>
+        <th class="th" style="cursor: pointer; min-width: 250px">
+          <span class="th-span">MARCA</span>
+          <span *ngIf="sortOrder['brand'] !== true" (click)="sortTable('brand')"
+            >▼</span
+          >
+          <span *ngIf="sortOrder['brand'] === true" (click)="sortTable('brand')"
+            >▲</span
+          >
+          <span
+            ><img style="width: 20px; margin-left: 0.5rem" src="filter.svg"
+          /></span>
         </th>
-        <th
-          class="th"
-          (click)="sortTable('model')"
-          style="cursor: pointer; width: 100%; min-width: 200px"
-        >
-          MODELO <span *ngIf="sortOrder['model'] !== true">▼</span>
-          <span *ngIf="sortOrder['model'] === true">▲</span>
+        <th class="th" style="cursor: pointer; width: 100%; min-width: 200px">
+          <span class="th-span">MODELO</span>
+          <span *ngIf="sortOrder['model'] !== true" (click)="sortTable('model')"
+            >▼</span
+          >
+          <span *ngIf="sortOrder['model'] === true" (click)="sortTable('model')"
+            >▲</span
+          >
         </th>
-        <th
-          class="th"
-          (click)="sortTable('year')"
-          style="cursor: pointer; min-width: 150px"
-        >
-          ANO <span *ngIf="sortOrder['year'] !== true">▼</span>
-          <span *ngIf="sortOrder['year'] === true">▲</span>
+        <th class="th" style="cursor: pointer; min-width: 150px">
+          <span class="th-span">ANO</span
+          ><span *ngIf="sortOrder['year'] !== true" (click)="sortTable('year')"
+            >▼</span
+          >
+          <span *ngIf="sortOrder['year'] === true" (click)="sortTable('year')"
+            >▲</span
+          >
         </th>
-        <th
-          class="th"
-          (click)="sortTable('plate')"
-          style="cursor: pointer; min-width: 150px"
-        >
-          PLACA <span *ngIf="sortOrder['plate'] !== true">▼</span>
-          <span *ngIf="sortOrder['plate'] === true">▲</span>
+        <th class="th" style="cursor: pointer; min-width: 150px">
+          <span class="th-span">PLACA</span>
+          <span *ngIf="sortOrder['plate'] !== true" (click)="sortTable('plate')"
+            >▼</span
+          >
+          <span *ngIf="sortOrder['plate'] === true" (click)="sortTable('plate')"
+            >▲</span
+          >
         </th>
-        <th
-          class="th"
-          (click)="sortTable('chassi')"
-          style="cursor: pointer; min-width: 250px"
-        >
-          CHASSI <span *ngIf="sortOrder['chassi'] !== true">▼</span>
-          <span *ngIf="sortOrder['chassi'] === true">▲</span>
+        <th class="th" style="cursor: pointer; min-width: 250px">
+          <span class="th-span">CHASSI</span>
+          <span
+            *ngIf="sortOrder['chassi'] !== true"
+            (click)="sortTable('chassi')"
+            >▼</span
+          >
+          <span
+            *ngIf="sortOrder['chassi'] === true"
+            (click)="sortTable('chassi')"
+            >▲</span
+          >
         </th>
-        <th
-          class="th"
-          (click)="sortTable('reindeer')"
-          style="cursor: pointer; min-width: 250px"
-        >
-          RENAVAM <span *ngIf="sortOrder['reindeer'] !== true">▼</span>
-          <span *ngIf="sortOrder['reindeer'] === true">▲</span>
+        <th class="th" style="cursor: pointer; min-width: 250px">
+          <span class="th-span">RENAVAM</span>
+          <span
+            *ngIf="sortOrder['reindeer'] !== true"
+            (click)="sortTable('reindeer')"
+            >▼</span
+          >
+          <span
+            *ngIf="sortOrder['reindeer'] === true"
+            (click)="sortTable('reindeer')"
+            >▲</span
+          >
         </th>
         <th
           class="th"
@@ -112,7 +129,15 @@
             placeholder="Reindeer"
           />
         </td>
-        <td style="align-items: center; position: sticky; right: 0; z-index: 3; min-width: 200px">
+        <td
+          style="
+            align-items: center;
+            position: sticky;
+            right: 0;
+            z-index: 3;
+            min-width: 200px;
+          "
+        >
           <div class="btns-field">
             <button
               (click)="saveNewVehicle()"
@@ -324,7 +349,7 @@
   *ngIf="showSuccessAlert"
   class="alert alert-success alert-dismissible fade show fixed-top custom-alert"
   role="alert"
-  style="z-index: 1050; margin-top: 10px;"
+  style="z-index: 1050; margin-top: 10px"
 >
   <strong>Sucesso!</strong> Os dados foram salvos com sucesso.
   <button
@@ -340,7 +365,7 @@
   *ngIf="showAttentionAlert"
   class="alert alert-warning alert-dismissible fade show fixed-top custom-alert"
   role="alert"
-  style="z-index: 1050; margin-top: 10px;"
+  style="z-index: 1050; margin-top: 10px"
 >
   <strong>Atenção!</strong> {{ attentionMessage }}
   <button

@@ -55,6 +55,10 @@ input {
   }
 }
 
+.th-span {
+  margin-right: 1rem;
+}
+
 .btns-field {
   display: flex;
   height: 3rem;
