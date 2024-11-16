@@ -55,7 +55,7 @@
   padding: 0 3rem 0 2rem;
 
   &:focus {
-    outline:1px solid #fbbb00;
+    outline:2px solid #fbbb00;
   }
 }
 
