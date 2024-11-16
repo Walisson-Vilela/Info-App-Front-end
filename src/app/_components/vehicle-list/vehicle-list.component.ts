@@ -20,7 +20,7 @@ interface Vehicle {
   styleUrls: ['./vehicle-list.component.css'],
 })
 
-export class VehicleListComponent {
+export class VehicleListComponent implements OnInit {
   vehicles: Vehicle[] = [];
 
   showSuccessAlert: boolean = false;
@@ -33,6 +33,7 @@ export class VehicleListComponent {
   selectedVehicle: Vehicle | null = null;
   isEditing: boolean = false;
   sortOrder: { [key: string]: boolean } = {};
+  isPopoverVisible: boolean = false;
 
   constructor(private vehicleService: VehicleService) {}
 
@@ -49,6 +50,10 @@ export class VehicleListComponent {
         console.error('Erro ao carregar veículos:', error);
       }
     );
+  }
+
+  togglePopover(): void {
+    this.isPopoverVisible = !this.isPopoverVisible;
   }
 
   addNewVehicle() {

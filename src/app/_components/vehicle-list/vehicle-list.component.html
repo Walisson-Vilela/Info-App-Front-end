@@ -19,9 +19,12 @@
           <span *ngIf="sortOrder['brand'] === true" (click)="sortTable('brand')"
             >▲</span
           >
-          <span
-            ><img style="width: 20px; margin-left: 0.5rem" src="filter.svg"
-          /></span>
+          <span (click)="togglePopover()">
+            <img
+              style="width: 20px; margin-left: 0.5rem"
+              src="filter.svg"
+            />
+          </span>
         </th>
         <th class="th" style="cursor: pointer; width: 100%; min-width: 200px">
           <span class="th-span">MODELO</span>
@@ -374,4 +377,14 @@
     (click)="closeAttentionAlert()"
     aria-label="Close"
   ></button>
+</div>
+
+<div class="popover" *ngIf="isPopoverVisible">
+  <div class="popover-header">
+    <h5>Lista de Veículos</h5>
+    <button class="close" (click)="togglePopover()">×</button>
+  </div>
+  <ul class="popover-body">
+    <li *ngFor="let vehicle of vehicles">{{ vehicle.brand }} - {{ vehicle.model }}</li>
+  </ul>
 </div>
