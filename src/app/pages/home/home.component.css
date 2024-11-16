@@ -1,16 +1,9 @@
-
 .display {
   display: flex;
-  flex-direction: column;
   height: 100vh;
 }
 
-.container {
-  display: flex;
-  height: 100vh;
-}
-
-.table-area {
+.vehicle-list {
   display: flex;
   flex-direction: column;
   width: 100%;
