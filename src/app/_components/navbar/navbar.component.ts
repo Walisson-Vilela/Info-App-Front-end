@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'; // Importa o Router
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +8,7 @@ import { Router } from '@angular/router'; // Importa o Router
 })
 export class NavbarComponent implements OnInit {
 
-  username: string = ''; // Variável para armazenar o nome do usuário
+  username: string = '';
 
   constructor(private router: Router) { } // Injeta o Router
 
@@ -28,7 +28,6 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('authToken');
     localStorage.removeItem('username');
 
-    // Redireciona para a página de login
-    this.router.navigate(['']); // Navega para a página de login
+    this.router.navigate(['']);
   }
 }
