@@ -87,6 +87,7 @@
             [(ngModel)]="newVehicle.year"
             class="form-control"
             placeholder="Ano"
+            type="number"
           />
         </td>
         <td>
@@ -166,6 +167,7 @@
             [(ngModel)]="vehicle.year"
             class="form-control"
             [disabled]="true"
+            type="number"
           />
           <input
             *ngIf="vehicle.isEditing"
