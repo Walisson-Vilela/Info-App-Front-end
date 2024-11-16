@@ -159,7 +159,8 @@
         </td>
       </tr>
       <!-- Exibe os veículos existentes -->
-      <tr *ngFor="let vehicle of vehicles; let i = index">
+      <!-- <tr *ngFor="let vehicle of vehicles; let i = index"> -->
+        <tr *ngFor="let vehicle of filteredVehicles; let i = index">
         <td>
           <input
             *ngIf="!vehicle.isEditing"
@@ -393,7 +394,7 @@
           [(ngModel)]="vehicle.isSelected"
           (change)="onCheckboxChange(vehicle)"
         />
-        {{ vehicle.brand }} - {{ vehicle.model }}
+        {{ vehicle.brand }}
       </label>
     </li>
   </ul>

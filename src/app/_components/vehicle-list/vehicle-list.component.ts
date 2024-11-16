@@ -23,7 +23,7 @@ interface Vehicle {
 
 export class VehicleListComponent implements OnInit {
   vehicles: Vehicle[] = [];
-
+  filteredVehicles: Vehicle[] = [];
   showSuccessAlert: boolean = false;
   showAttentionAlert: boolean = false;
   attentionMessage: string = ''; // Declara a variável de mensagem de atenção
@@ -40,26 +40,31 @@ export class VehicleListComponent implements OnInit {
   constructor(private vehicleService: VehicleService) {}
 
   ngOnInit(): void {
-    this.loadVehicles();  // Carregue os veículos da API ao inicializar o componente
+    this.loadVehicles();
   }
 
   loadVehicles(): void {
     this.vehicleService.getAllVehicles().subscribe(
       (data) => {
-        this.vehicles = data; // Atualiza a lista de veículos
+        this.vehicles = data;
+        this.filteredVehicles = [...this.vehicles]; // Inicializa filteredVehicles com todos os veículos
       },
       (error) => {
         console.error('Erro ao carregar veículos:', error);
       }
     );
   }
-
   togglePopover(): void {
     this.isPopoverVisible = !this.isPopoverVisible;
   }
 
   onCheckboxChange(vehicle: Vehicle): void {
     console.log(`Veículo ${vehicle.brand} ${vehicle.model} selecionado: ${vehicle.isSelected}`);
+    this.applyFilter(); // Atualiza a lista filtrada
+  }
+  applyFilter(): void {
+    const selectedVehicles = this.vehicles.filter(vehicle => vehicle.isSelected);
+    this.filteredVehicles = selectedVehicles.length > 0 ? selectedVehicles : [...this.vehicles];
   }
 
   addNewVehicle() {
