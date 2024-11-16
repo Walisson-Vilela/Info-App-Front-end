@@ -43,7 +43,7 @@ export class VehicleListComponent {
   loadVehicles(): void {
     this.vehicleService.getAllVehicles().subscribe(
       (data) => {
-        this.vehicles = data;
+        this.vehicles = data; // Atualiza a lista de veículos
       },
       (error) => {
         console.error('Erro ao carregar veículos:', error);
@@ -51,7 +51,7 @@ export class VehicleListComponent {
     );
   }
 
-   addNewVehicle() {
+  addNewVehicle() {
     this.isAddingNew = true;
     this.newVehicle = { id: 0, brand: '', model: '', plate: '', chassi: '', reindeer: '', year: 0 };
   }
@@ -102,17 +102,22 @@ export class VehicleListComponent {
       this.newVehicle.reindeer &&
       this.newVehicle.year
     ) {
-      // Atribui um ID único para o novo veículo (número de veículos + 1)
-      this.newVehicle.id = this.vehicles.length + 1;
-      // Adiciona o novo veículo no início da tabela
-      this.vehicles.unshift({ ...this.newVehicle });
-      this.cancelNewVehicle(); // Cancela a inserção de novo veículo após salvar
-      this.showSuccessAlert = true; // Exibe o alerta de sucesso
+      // Chama o serviço para criar o veículo
+      this.vehicleService.createVehicle(this.newVehicle).subscribe(
+        (vehicle) => {
+          this.loadVehicles();  // Recarrega a lista de veículos após salvar
+          this.cancelNewVehicle();
+          this.showSuccessAlert = true;
 
-      // Esconde o alerta de sucesso após 3 segundos
-      setTimeout(() => {
-        this.showSuccessAlert = false;
-      }, 3000);
+          // Esconde o alerta de sucesso após 3 segundos
+          setTimeout(() => {
+            this.showSuccessAlert = false;
+          }, 3000);
+        },
+        (error) => {
+          console.error('Erro ao salvar veículo:', error);
+        }
+      );
     } else {
       this.attentionMessage = 'Por favor, preencha todos os campos obrigatórios.';
       this.showAttentionAlert = true;
@@ -121,22 +126,7 @@ export class VehicleListComponent {
         this.showAttentionAlert = false;
       }, 3000);
     }
-    this.vehicleService.createVehicle(this.newVehicle).subscribe(
-      (vehicle) => {
-        this.vehicles.unshift(vehicle);  // Adiciona o veículo na lista local
-        this.cancelNewVehicle();
-        this.showSuccessAlert = true;
-
-        setTimeout(() => {
-          this.showSuccessAlert = false;
-        }, 3000);
-      },
-      (error) => {
-        console.error('Erro ao salvar veículo:', error);
-      }
-    );
   }
-
 
   cancelNewVehicle() {
     this.isAddingNew = false;
@@ -262,7 +252,7 @@ export class VehicleListComponent {
     }
   }
 
- cancelDelete(): void {
+  cancelDelete(): void {
     this.showDeleteModal = false;
     this.vehicleToDelete = null;
   }
