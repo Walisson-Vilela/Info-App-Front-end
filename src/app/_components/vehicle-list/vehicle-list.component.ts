@@ -12,6 +12,7 @@ interface Vehicle {
   year?: number;
   isEditing?: boolean;
   originalData?: Vehicle;
+  isSelected?: boolean;
 }
 
 @Component({
@@ -34,6 +35,7 @@ export class VehicleListComponent implements OnInit {
   isEditing: boolean = false;
   sortOrder: { [key: string]: boolean } = {};
   isPopoverVisible: boolean = false;
+  popoverStyle: any = {}; // Estilos dinâmicos para o popover
 
   constructor(private vehicleService: VehicleService) {}
 
@@ -54,6 +56,10 @@ export class VehicleListComponent implements OnInit {
 
   togglePopover(): void {
     this.isPopoverVisible = !this.isPopoverVisible;
+  }
+
+  onCheckboxChange(vehicle: Vehicle): void {
+    console.log(`Veículo ${vehicle.brand} ${vehicle.model} selecionado: ${vehicle.isSelected}`);
   }
 
   addNewVehicle() {

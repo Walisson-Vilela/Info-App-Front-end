@@ -379,12 +379,22 @@
   ></button>
 </div>
 
-<div class="popover" *ngIf="isPopoverVisible">
+<!--Popover personalizado -->
+<div class="popover" *ngIf="isPopoverVisible" [ngStyle]="popoverStyle">
   <div class="popover-header">
     <h5>Lista de Veículos</h5>
     <button class="close" (click)="togglePopover()">×</button>
   </div>
   <ul class="popover-body">
-    <li *ngFor="let vehicle of vehicles">{{ vehicle.brand }} - {{ vehicle.model }}</li>
+    <li *ngFor="let vehicle of vehicles">
+      <label>
+        <input
+          type="checkbox"
+          [(ngModel)]="vehicle.isSelected"
+          (change)="onCheckboxChange(vehicle)"
+        />
+        {{ vehicle.brand }} - {{ vehicle.model }}
+      </label>
+    </li>
   </ul>
 </div>
