@@ -13,16 +13,13 @@ O **Info-App Front-End** é uma aplicação desenvolvida para o sistema **Info-A
 
 ## Como Rodar o Sistema
 
-Para executar a aplicação, utilize o seguinte comando no terminal:
+Para executar a aplicação, utilize o seguinte comando no terminal: ng serve
 
-```bash
-ng serve
-```bash
 
-Bibliotecas instaladas
+## Bibliotecas instaladas
  npm install ngx-mask --save -> Para utilização de mascaras em inputs de formulários.
 
-Imagens demonstrativas
+## Imagens demonstrativas
 Tela de Login
 ![Info-App](./Login.png)
 
