@@ -23,6 +23,10 @@ interface Vehicle {
 
 export class VehicleListComponent implements OnInit {
   vehicles: Vehicle[] = [];
+  filteredVehicles: Vehicle[] = [];
+  filterOptions: { brand: string[] } = { brand: [] };
+  activeFilters: { [key: string]: string[] } = {};
+  vehicleBrands: string[] = [];
 
   showSuccessAlert: boolean = false;
   showAttentionAlert: boolean = false;
@@ -41,17 +45,31 @@ export class VehicleListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadVehicles();
+    this.vehicleBrands = this.vehicles.map(vehicle => vehicle.brand);
   }
 
   loadVehicles(): void {
     this.vehicleService.getAllVehicles().subscribe(
       (data) => {
         this.vehicles = data;
+        this.vehicleBrands = this.vehicles.map(vehicle => vehicle.brand);  // Preenchendo a lista de marcas
       },
       (error) => {
         console.error('Erro ao carregar veículos:', error);
       }
     );
+  }
+
+  onFiltersChanged(event: { column: string; filters: string[] }): void {
+    this.activeFilters[event.column] = event.filters;
+
+    this.filteredVehicles = this.vehicles.filter(vehicle => {
+      return (
+        !this.activeFilters['brand'] ||
+        this.activeFilters['brand'].length === 0 ||
+        this.activeFilters['brand'].includes(vehicle.brand)
+      );
+    });
   }
 
   onCheckboxChange(): void {

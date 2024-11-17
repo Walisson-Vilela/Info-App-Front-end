@@ -10,6 +10,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { LoginComponent } from './pages/login/login.component';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { HttpClientModule } from '@angular/common/http';
+import { CheckboxFilterComponent } from './_components/checkbox-filter/checkbox-filter.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     VehicleListComponent,
     LoginComponent,
+    CheckboxFilterComponent,
   ],
   imports: [
     BrowserModule,

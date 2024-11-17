@@ -20,10 +20,7 @@
             >▲</span
           >
           <span (click)="togglePopover()">
-            <img
-              style="width: 20px; margin-left: 0.5rem"
-              src="filter.svg"
-            />
+            <img style="width: 20px; margin-left: 0.5rem" src="filter.svg" />
           </span>
         </th>
         <th class="th" style="cursor: pointer; width: 100%; min-width: 200px">
@@ -159,8 +156,8 @@
         </td>
       </tr>
       <!-- Exibe os veículos existentes -->
-      <!-- <tr *ngFor="let vehicle of vehicles; let i = index"> -->
-        <tr *ngFor="let vehicle of vehicles; let i = index">
+      <tr *ngFor="let vehicle of vehicles; let i = index">
+      <!-- <tr *ngFor="let vehicle of filteredVehicles; let i = index"> -->
         <td>
           <input
             *ngIf="!vehicle.isEditing"
@@ -386,7 +383,11 @@
     <h5>Lista de Veículos</h5>
     <button class="close" (click)="togglePopover()">×</button>
   </div>
-  <ul class="popover-body">
+  <app-checkbox-filter
+    [filterOptions]="vehicleBrands"
+    (applyFilters)="onFiltersChanged($event)"
+  ></app-checkbox-filter>
+  <!-- <ul class="popover-body">
     <li *ngFor="let vehicle of vehicles">
       <label>
         <input
@@ -397,5 +398,5 @@
         {{ vehicle.brand }}
       </label>
     </li>
-  </ul>
+  </ul> -->
 </div>

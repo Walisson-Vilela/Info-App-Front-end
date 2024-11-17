@@ -1,0 +1,22 @@
+<div class="checkbox-filter">
+  <input
+    type="text"
+    placeholder="Pesquisar..."
+    [(ngModel)]="searchText"
+    (input)="onSearchChange()"
+    class="filter-search"
+  />
+
+  <div class="filter-options">
+    <div *ngFor="let option of currentFilterOptions">
+      <label>
+        <input type="checkbox" [checked]="checkedItems[option]" (change)="onCheckboxChange(option, $event)" />
+        {{ option }}
+      </label>
+    </div>
+  </div>
+
+  <button *ngIf="active" (click)="clearFilters()" class="clear-filters">
+    Limpar Filtros
+  </button>
+</div>
