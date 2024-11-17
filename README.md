@@ -17,6 +17,7 @@ Para executar a aplicação, utilize o seguinte comando no terminal:
 
 ```bash
 ng serve
+```bash
 
 Bibliotecas instaladas
  npm install ngx-mask --save -> Para utilização de mascaras em inputs de formulários.
