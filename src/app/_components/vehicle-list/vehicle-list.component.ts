@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 interface Vehicle {
   id: number;
+  createdAt?: Date;
   brand: string;
   model: string;
   plate: string;
@@ -28,7 +29,7 @@ export class VehicleListComponent {
   attentionMessage: string = ''; // Declara a variável de mensagem de atenção
   showDeleteModal: boolean = false;
   vehicleToDelete: any = null;
-  newVehicle: Vehicle = { id: 0, brand: '', model: '', plate: '', chassi: '', reindeer: '', year: 0 };
+  newVehicle: Vehicle = { id: 0, createdAt: new Date(), brand: '', model: '', plate: '', chassi: '', reindeer: '', year: 0 };
   isAddingNew: boolean = false;
   selectedVehicle: Vehicle | null = null;
   isEditing: boolean = false;
@@ -38,22 +39,32 @@ export class VehicleListComponent {
 
   ngOnInit(): void {
     this.loadVehicles();  // Carregue os veículos da API ao inicializar o componente
+    this.sortVehiclesByDate();
+  }
+
+  sortVehiclesByDate() {
+    this.vehicles.sort((a, b) => {
+      // Verifica se a data é válida antes de comparar
+      const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0; // Se não existir, considera como 0
+      const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0; // Se não existir, considera como 0
+      return dateB - dateA; // Ordena do mais recente para o mais antigo
+    });
   }
 
   loadVehicles(): void {
     this.vehicleService.getAllVehicles().subscribe(
       (data) => {
         this.vehicles = data; // Atualiza a lista de veículos
+        this.sortVehiclesByDate(); // Ordena os veículos após carregá-los
       },
       (error) => {
         console.error('Erro ao carregar veículos:', error);
       }
     );
   }
-
   addNewVehicle() {
     this.isAddingNew = true;
-    this.newVehicle = { id: 0, brand: '', model: '', plate: '', chassi: '', reindeer: '', year: 0 };
+    this.newVehicle = { id: 0,createdAt: new Date(), brand: '', model: '', plate: '', chassi: '', reindeer: '', year: 0 };
   }
 
   saveNewVehicle() {
@@ -107,6 +118,7 @@ export class VehicleListComponent {
         (vehicle) => {
           this.loadVehicles();  // Recarrega a lista de veículos após salvar
           this.cancelNewVehicle();
+          this.sortVehiclesByDate();
           this.showSuccessAlert = true;
 
           // Esconde o alerta de sucesso após 3 segundos
