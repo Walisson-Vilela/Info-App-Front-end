@@ -59,7 +59,7 @@ export class VehicleListComponent {
   saveNewVehicle() {
     const currentYear = new Date().getFullYear();
     const year = this.newVehicle.year ? parseInt(this.newVehicle.year.toString(), 10) : NaN; // Garantir que year seja um número válido
-    const platePattern = /^[A-Za-z0-9]{7}$/; // Expressão regular para verificar placa com 8 caracteres
+    const platePattern = /^[A-Za-z0-9]{7}$/; // Expressão regular para verificar placa com 7 caracteres
 
     // Verificação do ano
     if (isNaN(year) || year < 1941 || year > currentYear) {
@@ -105,8 +105,12 @@ export class VehicleListComponent {
       // Chama o serviço para criar o veículo
       this.vehicleService.createVehicle(this.newVehicle).subscribe(
         (vehicle) => {
-          this.loadVehicles();  // Recarrega a lista de veículos após salvar
-          this.cancelNewVehicle();
+          // Adiciona o novo veículo no início da lista
+          this.vehicles.unshift(vehicle); // Adiciona o novo veículo no topo
+
+          // Recarrega a lista de veículos após salvar
+          this.cancelNewVehicle(); // Cancela o formulário de novo veículo
+
           this.showSuccessAlert = true;
 
           // Esconde o alerta de sucesso após 3 segundos
@@ -127,6 +131,7 @@ export class VehicleListComponent {
       }, 3000);
     }
   }
+
 
   cancelNewVehicle() {
     this.isAddingNew = false;
