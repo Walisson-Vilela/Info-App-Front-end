@@ -12,3 +12,6 @@ Bibliotecas instaladas
 Imagens demonstrativas
 Tela de Login
 ![Info-App](./Login.png)
+
+Tela Home
+![Info-App](./Home.png)
