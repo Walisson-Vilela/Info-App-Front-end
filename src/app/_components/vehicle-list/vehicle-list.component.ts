@@ -140,12 +140,41 @@ export class VehicleListComponent {
     }
   }
 
-  saveVehicle(index: number) {
-    const vehicle = this.vehicles[index];
+  saveVehicle(index: number): void {
+    // Reseta o alerta de atenção antes de começar a validação
+    this.showAttentionAlert = false;
 
+    const vehicle = this.vehicles[index]; // Obtém o veículo específico usando o índice
+
+    // Variáveis para controle de alterações
     const currentYear = new Date().getFullYear();
-    const year = vehicle.year ? parseInt(vehicle.year.toString(), 10) : NaN; // Garantir que year seja um número válido
-    const platePattern = /^[A-Za-z0-9]{7}$/; // Expressão regular para verificar placa com 8 caracteres
+    const year = vehicle.year ? parseInt(vehicle.year.toString(), 10) : NaN;
+    const platePattern = /^[A-Za-z0-9]{7}$/;
+
+    // Verifica se houve alteração no veículo para validar
+    let isModified = false;
+    const originalVehicle = this.vehicles.find(v => v.id === vehicle.id);  // Verifica o veículo original
+
+    // Comparando com os dados anteriores
+    if (
+      originalVehicle?.brand !== vehicle.brand ||
+      originalVehicle?.model !== vehicle.model ||
+      originalVehicle?.plate !== vehicle.plate ||
+      originalVehicle?.chassi !== vehicle.chassi ||
+      originalVehicle?.reindeer !== vehicle.reindeer ||
+      originalVehicle?.year !== vehicle.year
+    ) {
+      isModified = true;  // Se houve alteração, realiza a validação
+    }
+
+    // Se não houve modificação, não exibe nenhum alerta e sai da função
+    if (!isModified) {
+      this.showSuccessAlert = true;
+      setTimeout(() => {
+        this.showSuccessAlert = false;
+      }, 3000);
+      return;
+    }
 
     // Verificação do ano
     if (isNaN(year) || year < 1941 || year > currentYear) {
@@ -188,7 +217,7 @@ export class VehicleListComponent {
       vehicle.reindeer &&
       vehicle.year
     ) {
-      vehicle.isEditing = false;
+      vehicle.isEditing = false; // Finaliza o modo de edição
       this.showSuccessAlert = true; // Exibe o alerta de sucesso
 
       // Esconde o alerta de sucesso após 3 segundos
@@ -199,16 +228,20 @@ export class VehicleListComponent {
       this.attentionMessage = 'Por favor, preencha todos os campos obrigatórios.';
       this.showAttentionAlert = true;
 
+      // Esconde o alerta de atenção após 3 segundos
       setTimeout(() => {
         this.showAttentionAlert = false;
       }, 3000);
     }
+
+    // Atualização do veículo
     this.vehicleService.updateVehicle(vehicle.id, vehicle).subscribe(
       (updatedVehicle) => {
-        this.vehicles[index] = updatedVehicle;  // Atualiza o veículo na lista local
-        vehicle.isEditing = false;
+        this.vehicles[index] = updatedVehicle; // Atualiza o veículo na lista local
+        vehicle.isEditing = false; // Finaliza o modo de edição
         this.showSuccessAlert = true;
 
+        // Esconde o alerta de sucesso após 3 segundos
         setTimeout(() => {
           this.showSuccessAlert = false;
         }, 3000);
@@ -218,6 +251,7 @@ export class VehicleListComponent {
       }
     );
   }
+
 
   cancelEdit(vehicle: Vehicle) {
     if (vehicle.originalData) {
