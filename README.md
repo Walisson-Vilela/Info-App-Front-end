@@ -8,3 +8,7 @@ Para rodar o sistema, digitar o comando "ng server" no terminal.
 
 Bibliotecas instaladas
  npm install ngx-mask --save -> Para utilização de mascaras em inputs de formulários.
+
+Imagens demonstrativas
+Tela de Login
+![Info-App](./Login.png)
