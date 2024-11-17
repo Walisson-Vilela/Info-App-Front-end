@@ -36,3 +36,22 @@
   display: inline-block;
 }
 
+::-webkit-scrollbar-track {
+  background: #e8edf7;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #424242;
+  cursor: move;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #242424;
+  cursor: move;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 12px;
+}
